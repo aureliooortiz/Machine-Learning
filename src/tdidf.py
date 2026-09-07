@@ -5,6 +5,40 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import GridSearchCV
 
+import pandas as pd
+import nltk
+
+from sklearn.model_selection import GridSearchCV
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.neighbors import KNeighborsClassifier
+from nltk.corpus import stopwords
+from sklearn.preprocessing import LabelEncoder
+
+# --------------------------------------------------
+# Load NLTK stopwords
+# --------------------------------------------------
+
+try:
+	stop_words_en = stopwords.words('english')
+except LookupError:
+	nltk.download('stopwords')
+	stop_words_en = stopwords.words('english')
+	
+# --------------------------------------------------
+# Read CSVs
+# --------------------------------------------------
+	
+train_df = pd.read_csv("../txt/comments_train.txt")
+test_df = pd.read_csv("../txt/comments_test.txt")
+# --------------------------------------------------
+# Dados
+# --------------------------------------------------
+X_train_texts = train_df["review"].astype(str)
+y_train = train_df["label"]
+
+X_test_texts = test_df["review"].astype(str)
+y_test = test_df["label"]
+
 # 1. Cria a pipeline com os passos nomeados
 pipeline = Pipeline([
     ('tfidf', TfidfVectorizer(stop_words=stop_words_en, lowercase=True)),
