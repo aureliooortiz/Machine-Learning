@@ -51,7 +51,7 @@ param_grid = {
     'tfidf__ngram_range': [(1,1), (1,2)],
     'tfidf__min_df': [1, 2, 5],
     'tfidf__max_df': [0.8, 0.9, 1.0],
-    'knn__n_neighbors': 5,
+    'knn__n_neighbors': [5],
     'knn__metric': ['cosine']
 }
 
