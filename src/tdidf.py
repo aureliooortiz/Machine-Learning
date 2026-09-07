@@ -51,8 +51,8 @@ param_grid = {
     'tfidf__ngram_range': [(1,1), (1,2)],
     'tfidf__min_df': [1, 2, 5],
     'tfidf__max_df': [0.8, 0.9, 1.0],
-    'knn__n_neighbors': range(2, 7),
-    'knn__metric': ['euclidean', 'manhattan', 'cosine']
+    'knn__n_neighbors': 5,
+    'knn__metric': ['cosine']
 }
 
 # 3. Roda o grid search na pipeline inteira
