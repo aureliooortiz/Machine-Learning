@@ -1,5 +1,34 @@
 #!/usr/bin/env python3
 
+from sklearn.pipeline import Pipeline
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.model_selection import GridSearchCV
+
+# 1. Cria a pipeline com os passos nomeados
+pipeline = Pipeline([
+    ('tfidf', TfidfVectorizer(stop_words=stop_words_en, lowercase=True)),
+    ('knn', KNeighborsClassifier())
+])
+
+# 2. Define o grid — repare no prefixo "tfidf__" e "knn__"
+param_grid = {
+    'tfidf__max_features': [200, 350, 500],
+    'tfidf__ngram_range': [(1,1), (1,2)],
+    'tfidf__min_df': [1, 2, 5],
+    'tfidf__max_df': [0.8, 0.9, 1.0],
+    'knn__n_neighbors': range(2, 7),
+    'knn__metric': ['euclidean', 'manhattan', 'cosine']
+}
+
+# 3. Roda o grid search na pipeline inteira
+grid = GridSearchCV(pipeline, param_grid, cv=5, n_jobs=-1, verbose=1)
+grid.fit(X_train_texts, y_train)  # passa o TEXTO cru, não o vetorizado!
+
+print(grid.best_params_)
+print(grid.best_score_)
+
+'''
 import pandas as pd
 import nltk
 
@@ -39,7 +68,7 @@ y_test = test_df["label"]
 # -------------------------------------------------
 # Separa os dados d e treino: em treino (80%) e validação (20%)
 # -------------------------------------------------
-'''
+
 X_train_texts, X_val_texts, y_train, y_val = train_test_split(
     X_train_texts,
     y_train,
@@ -47,7 +76,6 @@ X_train_texts, X_val_texts, y_train, y_val = train_test_split(
     random_state=42,
     stratify=y_train
 )
-'''
 
 # --------------------------------------------------
 # TF-IDF
@@ -70,7 +98,7 @@ feature_names = vectorizer.get_feature_names_out()
 # --------------------------------------------------
 # Validação
 # --------------------------------------------------
-"""
+
 metric = ["cityblock", "cosine", "euclidean", "haversine", "manhattan", "nan_euclidean"]
 for k in range(2,7):
 	for m in metric:
@@ -82,7 +110,7 @@ for k in range(2,7):
 		acuracia = accuracy_score(y_val, predictions)
 		
 		print(f"acuracia {k}: {acuracia:.4f}")
-"""
+
 param_grid = {
     'n_neighbors': range(2, 7),
     'metric': ['cityblock', 'cosine', 'euclidean', 'haversine', 'manhattan', 'nan_euclidean']
@@ -101,7 +129,7 @@ print(grid.best_params_)
 # --------------------------------------------------
 # Modelo
 # --------------------------------------------------
-"""
+
 print ("Classificando com kNN...")
 
 model = KNeighborsClassifier(n_neighbors=7, metric="euclidean")
@@ -123,5 +151,4 @@ from sklearn.metrics import confusion_matrix
 
 cm = confusion_matrix(y_test, predictions) # Compara os rótulos com a predição feita
 print (cm)
-"""
-
+'''
