@@ -9,7 +9,7 @@ import pandas as pd
 import nltk
 
 from sklearn.model_selection import GridSearchCV
-from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.neighbors import KNeighborsClassifier
 from nltk.corpus import stopwords
 from sklearn.preprocessing import LabelEncoder
@@ -39,28 +39,78 @@ y_train = train_df["label"]
 X_test_texts = test_df["review"].astype(str)
 y_test = test_df["label"]
 
-# 1. Cria a pipeline com os passos nomeados
-pipeline = Pipeline([
+#------------------------------------
+# Pipeline 
+# -----------------------------------
+pipeline_tfidf = Pipeline([
     ('tfidf', TfidfVectorizer(stop_words=stop_words_en, lowercase=True)),
     ('knn', KNeighborsClassifier())
 ])
 
-# 2. Define o grid — repare no prefixo "tfidf__" e "knn__"
-param_grid = {
+pipeline_bow = Pipeline([
+    ('bow', CountVectorizer(stop_words=stop_words_en, lowercase=True)),
+    ('knn', KNeighborsClassifier())
+])
+
+
+# -----------------------------------
+# Grid 
+# -----------------------------------
+"""
+param_grid_tfidf = {
     'tfidf__max_features': [200, 350, 500],
     'tfidf__ngram_range': [(1,1), (1,2)],
     'tfidf__min_df': [1, 2, 5],
     'tfidf__max_df': [0.8, 0.9, 1.0],
+    'knn__n_neighbors': [5,6,7,8,9,10,11],
+    'knn__metric': ['euclidean', 'manhatan', 'cosine']
+}
+"""
+"""
+param_grid_tfidf = {
+    'tfidf__max_features': [500],
+    'tfidf__ngram_range': [(1,1)],
+    'tfidf__min_df': [5],
+    'tfidf__max_df': [0.8],    
     'knn__n_neighbors': [5],
     'knn__metric': ['cosine']
 }
+"""
+param_grid_bow = {
+    'bow__max_features': [200, 350, 500],
+    'bow__ngram_range': [(1,1), (1,2)],
+    'bow__min_df':  [1, 2, 5],
+    'bow__max_df': [0.8, 0.9, 1.0],
+    'knn__n_neighbors': [5],
+    'knn__metric': ['cosine']
+}
+"""
+param_grid_bow = {
+    'bow__max_features': [500],
+    'bow__ngram_range': [(1,1)],
+    'bow__min_df': [5],
+    'bow__max_df': [0.8],
+    'knn__n_neighbors': [5],
+    'knn__metric': ['cosine']
+}
+"""
+# ---------------------------------------
+# Roda o grid search em cada pipeline
+# ---------------------------------------
+"""
+grid_tfidf = GridSearchCV(pipeline_tfidf, param_grid_tfidf, cv=5, n_jobs=-1, verbose=1)
+grid_tfidf.fit(X_train_texts, y_train)  # passa o TEXTO cru, não o vetorizado!
 
-# 3. Roda o grid search na pipeline inteira
-grid = GridSearchCV(pipeline, param_grid, cv=5, n_jobs=-1, verbose=1)
-grid.fit(X_train_texts, y_train)  # passa o TEXTO cru, não o vetorizado!
+print("KNN + TFIDF")
+print(grid_tfidf.best_params_)
+print(grid_tfidf.best_score_)
+"""
+grid_bow = GridSearchCV(pipeline_bow, param_grid_bow, cv=5, n_jobs=-1, verbose=1)
+grid_bow.fit(X_train_texts, y_train)  # passa o TEXTO cru, não o vetorizado!
 
-print(grid.best_params_)
-print(grid.best_score_)
+print("KNN + Bag Of Words")
+print(grid_bow.best_params_)
+print(grid_bow.best_score_)
 
 '''
 import pandas as pd
