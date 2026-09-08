@@ -14,6 +14,11 @@ from sklearn.neighbors import KNeighborsClassifier
 from nltk.corpus import stopwords
 from sklearn.preprocessing import LabelEncoder
 
+from sklearn.pipeline import Pipeline
+from sklearn.feature_extraction.text import HashingVectorizer
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.model_selection import GridSearchCV
+
 # --------------------------------------------------
 # Load NLTK stopwords
 # --------------------------------------------------
@@ -52,10 +57,21 @@ pipeline_bow = Pipeline([
     ('knn', KNeighborsClassifier())
 ])
 
+pipeline_hash = Pipeline([
+    ('hash', HashingVectorizer(stop_words=stop_words_en, lowercase=True, alternate_sign=False)),
+    ('knn', KNeighborsClassifier())
+])
 
 # -----------------------------------
 # Grid 
 # -----------------------------------
+param_grid_hash = {
+    'hash__n_features': [200, 300, 500],
+    'hash__ngram_range': [(1,1), (1,2)],
+    'knn__n_neighbors': [5],
+    'knn__metric': ['cosine']
+}
+
 """
 param_grid_tfidf = {
     'tfidf__max_features': [200, 350, 500],
@@ -66,7 +82,7 @@ param_grid_tfidf = {
     'knn__metric': ['euclidean', 'manhatan', 'cosine']
 }
 """
-
+"""
 param_grid_tfidf = {
     'tfidf__max_features': [500],
     'tfidf__ngram_range': [(1,1)],
@@ -76,7 +92,7 @@ param_grid_tfidf = {
     'knn__n_neighbors': [5],
     'knn__metric': ['cosine']
 }
-
+"""
 '''
 param_grid_bow = {
     'bow__max_features': [200, 350, 500],
@@ -101,13 +117,14 @@ param_grid_bow = {
 # ---------------------------------------
 # Roda o grid search em cada pipeline
 # ---------------------------------------
-
+"""
 grid_tfidf = GridSearchCV(pipeline_tfidf, param_grid_tfidf, cv=5, n_jobs=-1, verbose=1)
 grid_tfidf.fit(X_train_texts, y_train)  # passa o TEXTO cru, não o vetorizado!
 
 print("KNN + TFIDF")
 print(grid_tfidf.best_params_)
 print(grid_tfidf.best_score_)
+"""
 """
 grid_bow = GridSearchCV(pipeline_bow, param_grid_bow, cv=5, n_jobs=-1, verbose=1)
 grid_bow.fit(X_train_texts, y_train)  # passa o TEXTO cru, não o vetorizado!
@@ -116,6 +133,14 @@ print("KNN + Bag Of Words")
 print(grid_bow.best_params_)
 print(grid_bow.best_score_)
 """
+
+grid_hash = GridSearchCV(pipeline_hash, param_grid_hash, cv=5, n_jobs=-1, verbose=1)
+grid_hash.fit(X_train_texts, y_train)
+
+print("KNN + Hashing")
+print(grid_hash.best_params_)
+print(grid_hash.best_score_)
+
 '''
 import pandas as pd
 import nltk
