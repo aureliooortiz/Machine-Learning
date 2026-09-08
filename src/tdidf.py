@@ -57,30 +57,30 @@ def construir_experimentos(stop_words_en):
 	# Grid
 	# --------------------------------------------------
 	param_grid_tfidf = {
-		'tfidf__max_features': [200, 350, 500, 700],
-		'tfidf__ngram_range': [(1,1), (1,2)],
-		'tfidf__min_df': [5, 7, 10],
-		'tfidf__max_df': [0.8, 0.9, 1.0],
-		'knn__n_neighbors': [5,7,9,11],
+		'tfidf__max_features': [350, 500],
+		'tfidf__ngram_range': [(1,1)],
+		'tfidf__min_df': [5],
+		'tfidf__max_df': [0.8, 0.9],
+		'knn__n_neighbors': [5,9],
 		'knn__metric': ['euclidean', 'manhattan', 'cosine']
 	}
 	
 	param_grid_bow = {
-		'bow__max_features': [200, 350, 500, 700],
-		'bow__ngram_range': [(1,1), (1,2)],
-		'bow__min_df': [5, 7, 10],
-		'bow__max_df': [0.8, 0.9, 1.0],
-		'knn__n_neighbors': [5,7,9,11],
+		'bow__max_features': [350, 500],
+		'bow__ngram_range': [(1,1)],
+		'bow__min_df': [5],
+		'bow__max_df': [0.8, 0.9],
+		'knn__n_neighbors': [5,9],
 		'knn__metric': ['euclidean', 'manhattan', 'cosine']
 	}
 	
 	param_grid_lsa = {
-		'tfidf__max_features': [200, 350, 500, 700, 1000],
-    'tfidf__ngram_range': [(1,1), (1,2)],
-    'tfidf__min_df': [5, 7, 10],
-    'tfidf__max_df': [0.8, 0.9, 1.0],
+		'tfidf__max_features': [500, 700, 1000],
+    'tfidf__ngram_range': [(1,1)],
+    'tfidf__min_df': [5],
+    'tfidf__max_df': [0.8, 0.9],
     'svd__n_components': [100],
-    'knn__n_neighbors': [5,7,9,11],
+    'knn__n_neighbors': [5,9],
     'knn__metric': ['euclidean', 'manhattan', 'cosine']
 	}
 	
