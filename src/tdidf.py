@@ -60,44 +60,48 @@ pipeline_bow = Pipeline([
 param_grid_tfidf = {
     'tfidf__max_features': [200, 350, 500],
     'tfidf__ngram_range': [(1,1), (1,2)],
-    'tfidf__min_df': [1, 2, 5],
+    'tfidf__min_df': [5, 7, 10],
     'tfidf__max_df': [0.8, 0.9, 1.0],
     'knn__n_neighbors': [5,6,7,8,9,10,11],
     'knn__metric': ['euclidean', 'manhatan', 'cosine']
 }
 """
-"""
+
 param_grid_tfidf = {
     'tfidf__max_features': [500],
     'tfidf__ngram_range': [(1,1)],
     'tfidf__min_df': [5],
     'tfidf__max_df': [0.8],    
+    'knn__weights': ['uniform', 'distance'],
     'knn__n_neighbors': [5],
     'knn__metric': ['cosine']
 }
-"""
+
+'''
 param_grid_bow = {
     'bow__max_features': [200, 350, 500],
     'bow__ngram_range': [(1,1), (1,2)],
-    'bow__min_df':  [1, 2, 5],
+    'bow__min_df': [5, 7, 10],
     'bow__max_df': [0.8, 0.9, 1.0],
     'knn__n_neighbors': [5],
     'knn__metric': ['cosine']
 }
-"""
+'''
+'''
 param_grid_bow = {
-    'bow__max_features': [500],
+        'bow__max_features': [500],
     'bow__ngram_range': [(1,1)],
     'bow__min_df': [5],
     'bow__max_df': [0.8],
+    'knn__weights': ['distance'],
     'knn__n_neighbors': [5],
     'knn__metric': ['cosine']
 }
-"""
+'''
 # ---------------------------------------
 # Roda o grid search em cada pipeline
 # ---------------------------------------
-"""
+
 grid_tfidf = GridSearchCV(pipeline_tfidf, param_grid_tfidf, cv=5, n_jobs=-1, verbose=1)
 grid_tfidf.fit(X_train_texts, y_train)  # passa o TEXTO cru, não o vetorizado!
 
@@ -111,7 +115,7 @@ grid_bow.fit(X_train_texts, y_train)  # passa o TEXTO cru, não o vetorizado!
 print("KNN + Bag Of Words")
 print(grid_bow.best_params_)
 print(grid_bow.best_score_)
-
+"""
 '''
 import pandas as pd
 import nltk
