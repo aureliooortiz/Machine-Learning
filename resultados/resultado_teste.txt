@@ -1,0 +1,43 @@
+nohup: ignorando entrada
+
+==========================================
+      RESULTADOS NO CONJUNTO DE TESTE TF-IDF    
+==========================================
+Parâmetros Utilizados: {'tfidf__max_features': 500, 'tfidf__ngram_range': (1, 1), 'tfidf__min_df': 5, 'tfidf__max_df': 0.8, 'knn__n_neighbors': 9, 'knn__metric': 'euclidean'}
+  • Acurácia : 0.7190
+  • Precisão : 0.7288
+  • Recall   : 0.6977
+  • F1-Score : 0.7129
+  • Matriz de Confusão:
+      VP (Verdadeiros Positivos) : 8721
+      VN (Verdadeiros Negativos) : 9254
+      FP (Falsos Positivos)     : 3246
+      FN (Falsos Negativos)     : 3778
+
+==========================================
+      RESULTADOS NO CONJUNTO DE TESTE BoW    
+==========================================
+Parâmetros Utilizados: {'bow__max_features': 500, 'bow__ngram_range': (1, 1), 'bow__min_df': 5, 'bow__max_df': 0.8, 'knn__n_neighbors': 9, 'knn__metric': 'cosine'}
+  • Acurácia : 0.6955
+  • Precisão : 0.7139
+  • Recall   : 0.6526
+  • F1-Score : 0.6819
+  • Matriz de Confusão:
+      VP (Verdadeiros Positivos) : 8157
+      VN (Verdadeiros Negativos) : 9231
+      FP (Falsos Positivos)     : 3269
+      FN (Falsos Negativos)     : 4342
+
+==========================================
+      RESULTADOS NO CONJUNTO DE TESTE LSA    
+==========================================
+Parâmetros Utilizados: {'tfidf__max_features': 1000, 'tfidf__ngram_range': (1, 1), 'tfidf__min_df': 5, 'tfidf__max_df': 0.8, 'svd__n_components': 100, 'knn__n_neighbors': 9, 'knn__metric': 'cosine'}
+  • Acurácia : 0.7453
+  • Precisão : 0.7537
+  • Recall   : 0.7288
+  • F1-Score : 0.7410
+  • Matriz de Confusão:
+      VP (Verdadeiros Positivos) : 9109
+      VN (Verdadeiros Negativos) : 9523
+      FP (Falsos Positivos)     : 2977
+      FN (Falsos Negativos)     : 3390
