@@ -1,140 +1,174 @@
 #!/usr/bin/env python3
 
-from sklearn.decomposition import TruncatedSVD
-
-from sklearn.pipeline import Pipeline
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.neighbors import KNeighborsClassifier
-from sklearn.model_selection import GridSearchCV
-
 import pandas as pd
 import nltk
 
-from sklearn.model_selection import GridSearchCV
-from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.neighbors import KNeighborsClassifier
-from nltk.corpus import stopwords
-from sklearn.preprocessing import LabelEncoder
-
 from sklearn.pipeline import Pipeline
-from sklearn.feature_extraction.text import HashingVectorizer
-from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import GridSearchCV
+from sklearn.metrics import make_scorer, confusion_matrix
+from nltk.corpus import stopwords
+
+from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
+from sklearn.decomposition import TruncatedSVD
+
+#from sklearn.preprocessing import LabelEncoder
 
 # --------------------------------------------------
-# Load NLTK stopwords
+# Funções Auxiliares para Extrair Matriz de Confusão
 # --------------------------------------------------
+def calc_tn(y_true, y_pred):
+	cm = confusion_matrix(y_true, y_pred)
+	return cm[0, 0] if cm.shape == (2, 2) else 0
 
-try:
-	stop_words_en = stopwords.words('english')
-except LookupError:
-	nltk.download('stopwords')
-	stop_words_en = stopwords.words('english')
-	
-# --------------------------------------------------
-# Read CSVs
-# --------------------------------------------------
-	
-train_df = pd.read_csv("../txt/comments_train.txt")
-test_df = pd.read_csv("../txt/comments_test.txt")
-# --------------------------------------------------
-# Dados
-# --------------------------------------------------
-X_train_texts = train_df["review"].astype(str)
-y_train = train_df["label"]
+def calc_fp(y_true, y_pred):
+	cm = confusion_matrix(y_true, y_pred)
+	return cm[0, 1] if cm.shape == (2, 2) else 0
 
-X_test_texts = test_df["review"].astype(str)
-y_test = test_df["label"]
+def calc_fn(y_true, y_pred):
+	cm = confusion_matrix(y_true, y_pred)
+	return cm[1, 0] if cm.shape == (2, 2) else 0
 
-#------------------------------------
-# Pipeline 
-# -----------------------------------
-pipeline_tfidf = Pipeline([
+def calc_tp(y_true, y_pred):
+	cm = confusion_matrix(y_true, y_pred)
+	return cm[1, 1] if cm.shape == (2, 2) else 0
+
+def construir_experimentos(stop_words_en):
+	# --------------------------------------------------
+	# Pipeline
+	# --------------------------------------------------
+	pipeline_tfidf = Pipeline([
     ('tfidf', TfidfVectorizer(stop_words=stop_words_en, lowercase=True)),
     ('knn', KNeighborsClassifier())
-])
+	])
 
-pipeline_bow = Pipeline([
-    ('bow', CountVectorizer(stop_words=stop_words_en, lowercase=True)),
-    ('knn', KNeighborsClassifier())
-])
+	pipeline_bow = Pipeline([
+		  ('bow', CountVectorizer(stop_words=stop_words_en, lowercase=True)),
+		  ('knn', KNeighborsClassifier())
+	])
 
-pipeline_hash = Pipeline([
-    ('hash', HashingVectorizer(stop_words=stop_words_en, lowercase=True, alternate_sign=False)),
-    ('knn', KNeighborsClassifier())
-])
-
-pipeline_lsa = Pipeline([
-    ('tfidf', TfidfVectorizer(stop_words=stop_words_en, lowercase=True)),
-    ('svd', TruncatedSVD(random_state=42)),
-    ('knn', KNeighborsClassifier())
-])
-
-# -----------------------------------
-# Grid 
-# -----------------------------------
-param_grid_lsa = {
-    'tfidf__max_features': [1000],
-    'tfidf__ngram_range': [(1,1)],
-    'tfidf__min_df': [5],
-    'tfidf__max_df': [0.8],
-    'svd__n_components': [100],
-    'knn__n_neighbors': [5],
-    'knn__metric': ['cosine']
-}
-"""
-param_grid_hash = {
-    'hash__n_features': [200, 300, 500],
-    'hash__ngram_range': [(1,1), (1,2)],
-    'knn__n_neighbors': [5],
-    'knn__metric': ['euclidean', 'manhattan', 'cosine']
-}
-"""
-"""
-param_grid_tfidf = {
-    'tfidf__max_features': [200, 350, 500],
+	pipeline_lsa = Pipeline([
+		  ('tfidf', TfidfVectorizer(stop_words=stop_words_en, lowercase=True)),
+		  ('svd', TruncatedSVD(random_state=42)),
+		  ('knn', KNeighborsClassifier())
+	])
+	
+	# --------------------------------------------------
+	# Grid
+	# --------------------------------------------------
+	param_grid_tfidf = {
+		'tfidf__max_features': [200, 350, 500, 700],
+		'tfidf__ngram_range': [(1,1), (1,2)],
+		'tfidf__min_df': [5, 7, 10],
+		'tfidf__max_df': [0.8, 0.9, 1.0],
+		'knn__n_neighbors': [5,7,9,11],
+		'knn__metric': ['euclidean', 'manhattan', 'cosine']
+	}
+	
+	param_grid_bow = {
+		'bow__max_features': [200, 350, 500, 700],
+		'bow__ngram_range': [(1,1), (1,2)],
+		'bow__min_df': [5, 7, 10],
+		'bow__max_df': [0.8, 0.9, 1.0],
+		'knn__n_neighbors': [5,7,9,11],
+		'knn__metric': ['euclidean', 'manhattan', 'cosine']
+	}
+	
+	param_grid_lsa = {
+		'tfidf__max_features': [200, 350, 500, 700, 1000],
     'tfidf__ngram_range': [(1,1), (1,2)],
     'tfidf__min_df': [5, 7, 10],
     'tfidf__max_df': [0.8, 0.9, 1.0],
-    'knn__n_neighbors': [5,6,7,8,9,10,11],
-    'knn__metric': ['euclidean', 'manhatan', 'cosine']
-}
-"""
-"""
-param_grid_tfidf = {
-    'tfidf__max_features': [500],
-    'tfidf__ngram_range': [(1,1)],
-    'tfidf__min_df': [5],
-    'tfidf__max_df': [0.8],    
-    'knn__weights': ['uniform', 'distance'],
-    'knn__n_neighbors': [5],
-    'knn__metric': ['cosine']
-}
-"""
-'''
-param_grid_bow = {
-    'bow__max_features': [200, 350, 500],
-    'bow__ngram_range': [(1,1), (1,2)],
-    'bow__min_df': [5, 7, 10],
-    'bow__max_df': [0.8, 0.9, 1.0],
-    'knn__n_neighbors': [5],
-    'knn__metric': ['cosine']
-}
-'''
-'''
-param_grid_bow = {
-        'bow__max_features': [500],
-    'bow__ngram_range': [(1,1)],
-    'bow__min_df': [5],
-    'bow__max_df': [0.8],
-    'knn__weights': ['distance'],
-    'knn__n_neighbors': [5],
-    'knn__metric': ['cosine']
-}
-'''
-# ---------------------------------------
-# Roda o grid search em cada pipeline
-# ---------------------------------------
+    'svd__n_components': [100],
+    'knn__n_neighbors': [5,7,9,11],
+    'knn__metric': ['euclidean', 'manhattan', 'cosine']
+	}
+	
+	return {
+		"TF-IDF": (pipeline_tfidf, param_grid_tfidf),
+		"BoW": (pipeline_bow, param_grid_bow),
+		"LSA": (pipeline_lsa, param_grid_lsa)
+	}
+
+def validacao(pipeline, param_grid, X_train_texts, y_train, nome_experimento):
+	scoring = {
+		'accuracy': 'accuracy',
+		'precision': 'precision',
+		'recall': 'recall',
+		'f1': 'f1',
+		'tn': make_scorer(calc_tn),
+		'fp': make_scorer(calc_fp),
+		'fn': make_scorer(calc_fn),
+		'tp': make_scorer(calc_tp)
+	}
+	
+	grid = GridSearchCV(pipeline, param_grid, cv=5, scoring=scoring, refit='accuracy', n_jobs=-1, verbose=1)
+	grid.fit(X_train_texts, y_train)
+	
+	cv_res = grid.cv_results_
+	total_combos = len(cv_res['params'])
+
+	print("\n" + "="*80)
+	print(f"          RELATÓRIO COMPLETO DE RESULTADOS: {nome_experimento}")
+	print("="*80)
+
+	# Imprime os resultados de CADA combinação de parâmetros
+	for i in range(total_combos):
+		print(f"\n[Combinação {i+1}/{total_combos}]")
+		print(f"Parâmetros: {cv_res['params'][i]}")
+		print(f"  • Acurácia (média CV) : {cv_res['mean_test_accuracy'][i]:.4f}")
+		print(f"  • Precisão (média CV) : {cv_res['mean_test_precision'][i]:.4f}")
+		print(f"  • Recall   (média CV) : {cv_res['mean_test_recall'][i]:.4f}")
+		print(f"  • F1-Score (média CV) : {cv_res['mean_test_f1'][i]:.4f}")
+		print("  • Matriz de Confusão (média por fold):")
+		print(f"      VP (Verdadeiros Positivos) : {cv_res['mean_test_tp'][i]:.1f}")
+		print(f"      VN (Verdadeiros Negativos) : {cv_res['mean_test_tn'][i]:.1f}")
+		print(f"      FP (Falsos Positivos)     : {cv_res['mean_test_fp'][i]:.1f}")
+		print(f"      FN (Falsos Negativos)     : {cv_res['mean_test_fn'][i]:.1f}")
+
+	print("\n" + "-"*80)
+	print(f">>> VENCEDOR DO {nome_experimento} <<<")
+	print("Melhores Parâmetros :", grid.best_params_)
+	print(f"Melhor Acurácia     : {grid.best_score_:.4f}")
+	print("-"*80 + "\n")
+
+def main():
+	# --------------------------------------------------
+	# Load NLTK stopwords
+	# --------------------------------------------------
+	try:
+		stop_words_en = stopwords.words('english')
+	except LookupError:
+		nltk.download('stopwords')
+		stop_words_en = stopwords.words('english')
+		
+	# --------------------------------------------------
+	# Read CSVs
+	# --------------------------------------------------
+	train_df = pd.read_csv("../txt/comments_train.txt")
+	test_df = pd.read_csv("../txt/comments_test.txt")
+	
+	# --------------------------------------------------
+	# Dados
+	# --------------------------------------------------
+	X_train_texts = train_df["review"].astype(str)
+	y_train = train_df["label"].map({'neg': 0, 'pos': 1})
+	#y_train = train_df["label"]
+
+	X_test_texts = test_df["review"].astype(str)
+	y_test = test_df["label"].map({'neg': 0, 'pos': 1})
+	#y_test = test_df["label"]
+
+	# --------------------------------------------------
+	# Validação
+	# --------------------------------------------------
+	experimentos = construir_experimentos(stop_words_en)
+	for nome, (pipeline, grid) in experimentos.items():
+		validacao(pipeline, grid, X_train_texts, y_train, nome)
+				
+if __name__ == "__main__":
+    main()
+
 """
 grid_tfidf = GridSearchCV(pipeline_tfidf, param_grid_tfidf, cv=5, n_jobs=-1, verbose=1)
 grid_tfidf.fit(X_train_texts, y_train)  # passa o TEXTO cru, não o vetorizado!
@@ -142,79 +176,29 @@ grid_tfidf.fit(X_train_texts, y_train)  # passa o TEXTO cru, não o vetorizado!
 print("KNN + TFIDF")
 print(grid_tfidf.best_params_)
 print(grid_tfidf.best_score_)
-"""
-"""
+
 grid_bow = GridSearchCV(pipeline_bow, param_grid_bow, cv=5, n_jobs=-1, verbose=1)
 grid_bow.fit(X_train_texts, y_train)  # passa o TEXTO cru, não o vetorizado!
 
 print("KNN + Bag Of Words")
 print(grid_bow.best_params_)
 print(grid_bow.best_score_)
-"""
-'''
+
 grid_hash = GridSearchCV(pipeline_hash, param_grid_hash, cv=5, n_jobs=-1, verbose=1)
 grid_hash.fit(X_train_texts, y_train)
 
 print("KNN + Hashing")
 print(grid_hash.best_params_)
 print(grid_hash.best_score_)
-'''
 
 grid_lsa = GridSearchCV(pipeline_lsa, param_grid_lsa, cv=5, n_jobs=-1, verbose=1)
 grid_lsa.fit(X_train_texts, y_train)
 
-print("KNN + Hashing")
+print("KNN + LSA")
 print(grid_lsa.best_params_)
 print(grid_lsa.best_score_)
+"""
 '''
-import pandas as pd
-import nltk
-
-from sklearn.model_selection import GridSearchCV
-from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.neighbors import KNeighborsClassifier
-from nltk.corpus import stopwords
-from sklearn.preprocessing import LabelEncoder
-#from sklearn.metrics import accuracy_score, classification_report
-#from sklearn.model_selection import train_test_split
-
-# --------------------------------------------------
-# Load NLTK stopwords
-# --------------------------------------------------
-
-try:
-	stop_words_en = stopwords.words('english')
-except LookupError:
-	nltk.download('stopwords')
-	stop_words_en = stopwords.words('english')
-	
-# --------------------------------------------------
-# Read CSVs
-# --------------------------------------------------
-	
-train_df = pd.read_csv("../txt/comments_train.txt")
-test_df = pd.read_csv("../txt/comments_test.txt")
-# --------------------------------------------------
-# Dados
-# --------------------------------------------------
-X_train_texts = train_df["review"].astype(str)
-y_train = train_df["label"]
-
-X_test_texts = test_df["review"].astype(str)
-y_test = test_df["label"]
-
-# -------------------------------------------------
-# Separa os dados d e treino: em treino (80%) e validação (20%)
-# -------------------------------------------------
-
-X_train_texts, X_val_texts, y_train, y_val = train_test_split(
-    X_train_texts,
-    y_train,
-    test_size=0.2,
-    random_state=42,
-    stratify=y_train
-)
-
 # --------------------------------------------------
 # TF-IDF
 # --------------------------------------------------
@@ -228,7 +212,6 @@ vectorizer = TfidfVectorizer(
 )
 
 X_train = vectorizer.fit_transform(X_train_texts)
-# X_val = vectorizer.transform(X_val_texts)
 X_test  = vectorizer.transform(X_test_texts)
 
 feature_names = vectorizer.get_feature_names_out()
@@ -236,24 +219,6 @@ feature_names = vectorizer.get_feature_names_out()
 # --------------------------------------------------
 # Validação
 # --------------------------------------------------
-
-metric = ["cityblock", "cosine", "euclidean", "haversine", "manhattan", "nan_euclidean"]
-for k in range(2,7):
-	for m in metric:
-		model = KNeighborsClassifier(n_neighbors=k, metric=m)
-		model.fit(X_train, y_train) # "treina", armazena os dados de treinamento
-		
-		predictions = model.predict(X_val) # valida colocando os dados, calculando a distância
-		
-		acuracia = accuracy_score(y_val, predictions)
-		
-		print(f"acuracia {k}: {acuracia:.4f}")
-
-param_grid = {
-    'n_neighbors': range(2, 7),
-    'metric': ['cityblock', 'cosine', 'euclidean', 'haversine', 'manhattan', 'nan_euclidean']
-}
-
 # Converte os rótulos em números:
 le = LabelEncoder()
 y_train = le.fit_transform(y_train)
