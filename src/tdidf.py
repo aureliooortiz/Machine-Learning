@@ -132,6 +132,92 @@ def validacao(pipeline, param_grid, X_train_texts, y_train, nome_experimento):
 	print(f"Melhor Acurácia     : {grid.best_score_:.4f}")
 	print("-"*80 + "\n")
 
+def parametros_teste(stop_words_en):
+	# --------------------------------------------------
+	# Pipeline
+	# --------------------------------------------------
+	pipeline_tfidf = Pipeline([
+    ('tfidf', TfidfVectorizer(stop_words=stop_words_en, lowercase=True)),
+    ('knn', KNeighborsClassifier())
+	])
+
+	pipeline_bow = Pipeline([
+		  ('bow', CountVectorizer(stop_words=stop_words_en, lowercase=True)),
+		  ('knn', KNeighborsClassifier())
+	])
+
+	pipeline_lsa = Pipeline([
+		  ('tfidf', TfidfVectorizer(stop_words=stop_words_en, lowercase=True)),
+		  ('svd', TruncatedSVD(random_state=42)),
+		  ('knn', KNeighborsClassifier())
+	])
+	
+	# --------------------------------------------------
+	# Grid
+	# --------------------------------------------------
+	param_grid_tfidf = {
+		'tfidf__max_features': [350,500],
+		'tfidf__ngram_range': [(1,1)],
+		'tfidf__min_df': [5],
+		'tfidf__max_df': [0.8, 0.9],
+		'knn__n_neighbors': [5,9],
+		'knn__metric': ['euclidean', 'manhattan', 'cosine']
+	}
+	
+	param_grid_bow = {
+		'bow__max_features': [350, 500],
+		'bow__ngram_range': [(1,1)],
+		'bow__min_df': [5],
+		'bow__max_df': [0.8, 0.9],
+		'knn__n_neighbors': [5,9],
+		'knn__metric': ['euclidean', 'manhattan', 'cosine']
+	}
+	
+	param_grid_lsa = {
+		'tfidf__max_features': [500, 700, 1000],
+    'tfidf__ngram_range': [(1,1)],
+    'tfidf__min_df': [5],
+    'tfidf__max_df': [0.8, 0.9],
+    'svd__n_components': [100],
+    'knn__n_neighbors': [5,9],
+    'knn__metric': ['euclidean', 'manhattan', 'cosine']
+	}
+	
+	return {
+		"TF-IDF": (pipeline_tfidf, param_grid_tfidf),
+		"BoW": (pipeline_bow, param_grid_bow),
+		"LSA": (pipeline_lsa, param_grid_lsa)
+	}
+
+def teste(pipeline, parametros_escolhidos, X_train_texts, y_train, X_test_texts, y_test, nome):
+	
+	pipeline.set_params(parametros_escolhidos)
+	
+	pipeline.fit(X_train, y_train)
+	
+	y_pred = pipeline.predict(X_test_texts)
+	
+	acc = accuracy_score(y_test, y_pred)
+	prec = precision_score(y_test, y_pred, pos_label=1)
+	rec = recall_score(y_test, y_pred, pos_label=1)
+	f1 = f1_score(y_test, y_pred, pos_label=1)
+	
+	tn, fp, fn, tp = confusion_matrix(y_test, y_pred).ravel()
+	
+	print("\n==========================================")
+	print(f"      RESULTADOS NO CONJUNTO DE TESTE {técnica}    ")
+	print("==========================================")
+	print("Parâmetros Utilizados:", parametros_escolhidos)
+	print(f"  • Acurácia : {acc:.4f}")
+	print(f"  • Precisão : {prec:.4f}")
+	print(f"  • Recall   : {rec:.4f}")
+	print(f"  • F1-Score : {f1:.4f}")
+	print("  • Matriz de Confusão:")
+	print(f"      VP (Verdadeiros Positivos) : {tp}")
+	print(f"      VN (Verdadeiros Negativos) : {tn}")
+	print(f"      FP (Falsos Positivos)     : {fp}")
+	print(f"      FN (Falsos Negativos)     : {fn}")
+
 def main():
 	# --------------------------------------------------
 	# Load NLTK stopwords
@@ -153,19 +239,24 @@ def main():
 	# --------------------------------------------------
 	X_train_texts = train_df["review"].astype(str)
 	y_train = train_df["label"].map({'neg': 0, 'pos': 1})
-	#y_train = train_df["label"]
 
 	X_test_texts = test_df["review"].astype(str)
 	y_test = test_df["label"].map({'neg': 0, 'pos': 1})
-	#y_test = test_df["label"]
-
+	
 	# --------------------------------------------------
 	# Validação
 	# --------------------------------------------------
-	experimentos = construir_experimentos(stop_words_en)
-	for nome, (pipeline, grid) in experimentos.items():
-		validacao(pipeline, grid, X_train_texts, y_train, nome)
-				
+	#experimentos = construir_experimentos(stop_words_en)
+	#for nome, (pipeline, grid) in experimentos.items():
+		#validacao(pipeline, grid, X_train_texts, y_train, nome)
+	
+	# --------------------------------------------------
+	# Teste
+	# --------------------------------------------------
+	param_teste = parametros_teste(stop_words_en)
+	for nome, (pipeline, parametros) in param_teste.items():
+		teste(pipeline, parametros, X_train_texts, y_train, X_test_texts, y_test, nome)
+	
 if __name__ == "__main__":
     main()
 
