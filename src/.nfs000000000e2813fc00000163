@@ -1,0 +1,1045 @@
+nohup: ignorando entrada
+Fitting 5 folds for each of 24 candidates, totalling 120 fits
+
+================================================================================
+          RELATÓRIO COMPLETO DE RESULTADOS: TF-IDF
+================================================================================
+
+[Combinação 1/24]
+Parâmetros: {'knn__metric': 'euclidean', 'knn__n_neighbors': 5, 'tfidf__max_df': 0.8, 'tfidf__max_features': 350, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.6818
+  • Precisão (média CV) : 0.6891
+  • Recall   (média CV) : 0.6633
+  • F1-Score (média CV) : 0.6758
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1658.2
+      VN (Verdadeiros Negativos) : 1750.6
+      FP (Falsos Positivos)     : 749.4
+      FN (Falsos Negativos)     : 841.6
+
+[Combinação 2/24]
+Parâmetros: {'knn__metric': 'euclidean', 'knn__n_neighbors': 5, 'tfidf__max_df': 0.8, 'tfidf__max_features': 500, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.6867
+  • Precisão (média CV) : 0.6933
+  • Recall   (média CV) : 0.6698
+  • F1-Score (média CV) : 0.6813
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1674.4
+      VN (Verdadeiros Negativos) : 1758.8
+      FP (Falsos Positivos)     : 741.2
+      FN (Falsos Negativos)     : 825.4
+
+[Combinação 3/24]
+Parâmetros: {'knn__metric': 'euclidean', 'knn__n_neighbors': 5, 'tfidf__max_df': 0.9, 'tfidf__max_features': 350, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.6818
+  • Precisão (média CV) : 0.6891
+  • Recall   (média CV) : 0.6633
+  • F1-Score (média CV) : 0.6758
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1658.2
+      VN (Verdadeiros Negativos) : 1750.6
+      FP (Falsos Positivos)     : 749.4
+      FN (Falsos Negativos)     : 841.6
+
+[Combinação 4/24]
+Parâmetros: {'knn__metric': 'euclidean', 'knn__n_neighbors': 5, 'tfidf__max_df': 0.9, 'tfidf__max_features': 500, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.6867
+  • Precisão (média CV) : 0.6933
+  • Recall   (média CV) : 0.6698
+  • F1-Score (média CV) : 0.6813
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1674.4
+      VN (Verdadeiros Negativos) : 1758.8
+      FP (Falsos Positivos)     : 741.2
+      FN (Falsos Negativos)     : 825.4
+
+[Combinação 5/24]
+Parâmetros: {'knn__metric': 'euclidean', 'knn__n_neighbors': 9, 'tfidf__max_df': 0.8, 'tfidf__max_features': 350, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.6961
+  • Precisão (média CV) : 0.7049
+  • Recall   (média CV) : 0.6756
+  • F1-Score (média CV) : 0.6898
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1688.8
+      VN (Verdadeiros Negativos) : 1791.6
+      FP (Falsos Positivos)     : 708.4
+      FN (Falsos Negativos)     : 811.0
+
+[Combinação 6/24]
+Parâmetros: {'knn__metric': 'euclidean', 'knn__n_neighbors': 9, 'tfidf__max_df': 0.8, 'tfidf__max_features': 500, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.7055
+  • Precisão (média CV) : 0.7174
+  • Recall   (média CV) : 0.6786
+  • F1-Score (média CV) : 0.6973
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1696.4
+      VN (Verdadeiros Negativos) : 1830.8
+      FP (Falsos Positivos)     : 669.2
+      FN (Falsos Negativos)     : 803.4
+
+[Combinação 7/24]
+Parâmetros: {'knn__metric': 'euclidean', 'knn__n_neighbors': 9, 'tfidf__max_df': 0.9, 'tfidf__max_features': 350, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.6961
+  • Precisão (média CV) : 0.7049
+  • Recall   (média CV) : 0.6756
+  • F1-Score (média CV) : 0.6898
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1688.8
+      VN (Verdadeiros Negativos) : 1791.6
+      FP (Falsos Positivos)     : 708.4
+      FN (Falsos Negativos)     : 811.0
+
+[Combinação 8/24]
+Parâmetros: {'knn__metric': 'euclidean', 'knn__n_neighbors': 9, 'tfidf__max_df': 0.9, 'tfidf__max_features': 500, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.7055
+  • Precisão (média CV) : 0.7174
+  • Recall   (média CV) : 0.6786
+  • F1-Score (média CV) : 0.6973
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1696.4
+      VN (Verdadeiros Negativos) : 1830.8
+      FP (Falsos Positivos)     : 669.2
+      FN (Falsos Negativos)     : 803.4
+
+[Combinação 9/24]
+Parâmetros: {'knn__metric': 'manhattan', 'knn__n_neighbors': 5, 'tfidf__max_df': 0.8, 'tfidf__max_features': 350, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.5418
+  • Precisão (média CV) : 0.5357
+  • Recall   (média CV) : 0.7074
+  • F1-Score (média CV) : 0.5928
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1768.4
+      VN (Verdadeiros Negativos) : 940.6
+      FP (Falsos Positivos)     : 1559.4
+      FN (Falsos Negativos)     : 731.4
+
+[Combinação 10/24]
+Parâmetros: {'knn__metric': 'manhattan', 'knn__n_neighbors': 5, 'tfidf__max_df': 0.8, 'tfidf__max_features': 500, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.5486
+  • Precisão (média CV) : 0.5879
+  • Recall   (média CV) : 0.3566
+  • F1-Score (média CV) : 0.4005
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 891.4
+      VN (Verdadeiros Negativos) : 1851.6
+      FP (Falsos Positivos)     : 648.4
+      FN (Falsos Negativos)     : 1608.4
+
+[Combinação 11/24]
+Parâmetros: {'knn__metric': 'manhattan', 'knn__n_neighbors': 5, 'tfidf__max_df': 0.9, 'tfidf__max_features': 350, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.5418
+  • Precisão (média CV) : 0.5357
+  • Recall   (média CV) : 0.7074
+  • F1-Score (média CV) : 0.5928
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1768.4
+      VN (Verdadeiros Negativos) : 940.6
+      FP (Falsos Positivos)     : 1559.4
+      FN (Falsos Negativos)     : 731.4
+
+[Combinação 12/24]
+Parâmetros: {'knn__metric': 'manhattan', 'knn__n_neighbors': 5, 'tfidf__max_df': 0.9, 'tfidf__max_features': 500, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.5486
+  • Precisão (média CV) : 0.5879
+  • Recall   (média CV) : 0.3566
+  • F1-Score (média CV) : 0.4005
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 891.4
+      VN (Verdadeiros Negativos) : 1851.6
+      FP (Falsos Positivos)     : 648.4
+      FN (Falsos Negativos)     : 1608.4
+
+[Combinação 13/24]
+Parâmetros: {'knn__metric': 'manhattan', 'knn__n_neighbors': 9, 'tfidf__max_df': 0.8, 'tfidf__max_features': 350, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.5489
+  • Precisão (média CV) : 0.5316
+  • Recall   (média CV) : 0.8436
+  • F1-Score (média CV) : 0.6510
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 2108.8
+      VN (Verdadeiros Negativos) : 635.6
+      FP (Falsos Positivos)     : 1864.4
+      FN (Falsos Negativos)     : 391.0
+
+[Combinação 14/24]
+Parâmetros: {'knn__metric': 'manhattan', 'knn__n_neighbors': 9, 'tfidf__max_df': 0.8, 'tfidf__max_features': 500, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.5722
+  • Precisão (média CV) : 0.5738
+  • Recall   (média CV) : 0.5913
+  • F1-Score (média CV) : 0.5750
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1478.2
+      VN (Verdadeiros Negativos) : 1382.6
+      FP (Falsos Positivos)     : 1117.4
+      FN (Falsos Negativos)     : 1021.6
+
+[Combinação 15/24]
+Parâmetros: {'knn__metric': 'manhattan', 'knn__n_neighbors': 9, 'tfidf__max_df': 0.9, 'tfidf__max_features': 350, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.5489
+  • Precisão (média CV) : 0.5316
+  • Recall   (média CV) : 0.8436
+  • F1-Score (média CV) : 0.6510
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 2108.8
+      VN (Verdadeiros Negativos) : 635.6
+      FP (Falsos Positivos)     : 1864.4
+      FN (Falsos Negativos)     : 391.0
+
+[Combinação 16/24]
+Parâmetros: {'knn__metric': 'manhattan', 'knn__n_neighbors': 9, 'tfidf__max_df': 0.9, 'tfidf__max_features': 500, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.5722
+  • Precisão (média CV) : 0.5738
+  • Recall   (média CV) : 0.5913
+  • F1-Score (média CV) : 0.5750
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1478.2
+      VN (Verdadeiros Negativos) : 1382.6
+      FP (Falsos Positivos)     : 1117.4
+      FN (Falsos Negativos)     : 1021.6
+
+[Combinação 17/24]
+Parâmetros: {'knn__metric': 'cosine', 'knn__n_neighbors': 5, 'tfidf__max_df': 0.8, 'tfidf__max_features': 350, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.6818
+  • Precisão (média CV) : 0.6891
+  • Recall   (média CV) : 0.6633
+  • F1-Score (média CV) : 0.6758
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1658.2
+      VN (Verdadeiros Negativos) : 1750.6
+      FP (Falsos Positivos)     : 749.4
+      FN (Falsos Negativos)     : 841.6
+
+[Combinação 18/24]
+Parâmetros: {'knn__metric': 'cosine', 'knn__n_neighbors': 5, 'tfidf__max_df': 0.8, 'tfidf__max_features': 500, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.6867
+  • Precisão (média CV) : 0.6933
+  • Recall   (média CV) : 0.6698
+  • F1-Score (média CV) : 0.6813
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1674.4
+      VN (Verdadeiros Negativos) : 1758.8
+      FP (Falsos Positivos)     : 741.2
+      FN (Falsos Negativos)     : 825.4
+
+[Combinação 19/24]
+Parâmetros: {'knn__metric': 'cosine', 'knn__n_neighbors': 5, 'tfidf__max_df': 0.9, 'tfidf__max_features': 350, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.6818
+  • Precisão (média CV) : 0.6891
+  • Recall   (média CV) : 0.6633
+  • F1-Score (média CV) : 0.6758
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1658.2
+      VN (Verdadeiros Negativos) : 1750.6
+      FP (Falsos Positivos)     : 749.4
+      FN (Falsos Negativos)     : 841.6
+
+[Combinação 20/24]
+Parâmetros: {'knn__metric': 'cosine', 'knn__n_neighbors': 5, 'tfidf__max_df': 0.9, 'tfidf__max_features': 500, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.6867
+  • Precisão (média CV) : 0.6933
+  • Recall   (média CV) : 0.6698
+  • F1-Score (média CV) : 0.6813
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1674.4
+      VN (Verdadeiros Negativos) : 1758.8
+      FP (Falsos Positivos)     : 741.2
+      FN (Falsos Negativos)     : 825.4
+
+[Combinação 21/24]
+Parâmetros: {'knn__metric': 'cosine', 'knn__n_neighbors': 9, 'tfidf__max_df': 0.8, 'tfidf__max_features': 350, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.6961
+  • Precisão (média CV) : 0.7049
+  • Recall   (média CV) : 0.6756
+  • F1-Score (média CV) : 0.6898
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1688.8
+      VN (Verdadeiros Negativos) : 1791.6
+      FP (Falsos Positivos)     : 708.4
+      FN (Falsos Negativos)     : 811.0
+
+[Combinação 22/24]
+Parâmetros: {'knn__metric': 'cosine', 'knn__n_neighbors': 9, 'tfidf__max_df': 0.8, 'tfidf__max_features': 500, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.7055
+  • Precisão (média CV) : 0.7174
+  • Recall   (média CV) : 0.6786
+  • F1-Score (média CV) : 0.6973
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1696.4
+      VN (Verdadeiros Negativos) : 1830.8
+      FP (Falsos Positivos)     : 669.2
+      FN (Falsos Negativos)     : 803.4
+
+[Combinação 23/24]
+Parâmetros: {'knn__metric': 'cosine', 'knn__n_neighbors': 9, 'tfidf__max_df': 0.9, 'tfidf__max_features': 350, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.6961
+  • Precisão (média CV) : 0.7049
+  • Recall   (média CV) : 0.6756
+  • F1-Score (média CV) : 0.6898
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1688.8
+      VN (Verdadeiros Negativos) : 1791.6
+      FP (Falsos Positivos)     : 708.4
+      FN (Falsos Negativos)     : 811.0
+
+[Combinação 24/24]
+Parâmetros: {'knn__metric': 'cosine', 'knn__n_neighbors': 9, 'tfidf__max_df': 0.9, 'tfidf__max_features': 500, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.7055
+  • Precisão (média CV) : 0.7174
+  • Recall   (média CV) : 0.6786
+  • F1-Score (média CV) : 0.6973
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1696.4
+      VN (Verdadeiros Negativos) : 1830.8
+      FP (Falsos Positivos)     : 669.2
+      FN (Falsos Negativos)     : 803.4
+
+--------------------------------------------------------------------------------
+>>> VENCEDOR DO TF-IDF <<<
+Melhores Parâmetros : {'knn__metric': 'euclidean', 'knn__n_neighbors': 9, 'tfidf__max_df': 0.8, 'tfidf__max_features': 500, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+Melhor Acurácia     : 0.7055
+--------------------------------------------------------------------------------
+
+Fitting 5 folds for each of 24 candidates, totalling 120 fits
+
+================================================================================
+          RELATÓRIO COMPLETO DE RESULTADOS: BoW
+================================================================================
+
+[Combinação 1/24]
+Parâmetros: {'bow__max_df': 0.8, 'bow__max_features': 350, 'bow__min_df': 5, 'bow__ngram_range': (1, 1), 'knn__metric': 'euclidean', 'knn__n_neighbors': 5}
+  • Acurácia (média CV) : 0.6265
+  • Precisão (média CV) : 0.6210
+  • Recall   (média CV) : 0.6506
+  • F1-Score (média CV) : 0.6352
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1626.4
+      VN (Verdadeiros Negativos) : 1506.2
+      FP (Falsos Positivos)     : 993.8
+      FN (Falsos Negativos)     : 873.4
+
+[Combinação 2/24]
+Parâmetros: {'bow__max_df': 0.8, 'bow__max_features': 350, 'bow__min_df': 5, 'bow__ngram_range': (1, 1), 'knn__metric': 'euclidean', 'knn__n_neighbors': 9}
+  • Acurácia (média CV) : 0.6406
+  • Precisão (média CV) : 0.6345
+  • Recall   (média CV) : 0.6638
+  • F1-Score (média CV) : 0.6486
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1659.4
+      VN (Verdadeiros Negativos) : 1543.4
+      FP (Falsos Positivos)     : 956.6
+      FN (Falsos Negativos)     : 840.4
+
+[Combinação 3/24]
+Parâmetros: {'bow__max_df': 0.8, 'bow__max_features': 350, 'bow__min_df': 5, 'bow__ngram_range': (1, 1), 'knn__metric': 'manhattan', 'knn__n_neighbors': 5}
+  • Acurácia (média CV) : 0.6221
+  • Precisão (média CV) : 0.6198
+  • Recall   (média CV) : 0.6325
+  • F1-Score (média CV) : 0.6258
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1581.2
+      VN (Verdadeiros Negativos) : 1529.0
+      FP (Falsos Positivos)     : 971.0
+      FN (Falsos Negativos)     : 918.6
+
+[Combinação 4/24]
+Parâmetros: {'bow__max_df': 0.8, 'bow__max_features': 350, 'bow__min_df': 5, 'bow__ngram_range': (1, 1), 'knn__metric': 'manhattan', 'knn__n_neighbors': 9}
+  • Acurácia (média CV) : 0.6416
+  • Precisão (média CV) : 0.6368
+  • Recall   (média CV) : 0.6609
+  • F1-Score (média CV) : 0.6481
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1652.2
+      VN (Verdadeiros Negativos) : 1555.6
+      FP (Falsos Positivos)     : 944.4
+      FN (Falsos Negativos)     : 847.6
+
+[Combinação 5/24]
+Parâmetros: {'bow__max_df': 0.8, 'bow__max_features': 350, 'bow__min_df': 5, 'bow__ngram_range': (1, 1), 'knn__metric': 'cosine', 'knn__n_neighbors': 5}
+  • Acurácia (média CV) : 0.6653
+  • Precisão (média CV) : 0.6754
+  • Recall   (média CV) : 0.6369
+  • F1-Score (média CV) : 0.6555
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1592.2
+      VN (Verdadeiros Negativos) : 1734.2
+      FP (Falsos Positivos)     : 765.8
+      FN (Falsos Negativos)     : 907.6
+
+[Combinação 6/24]
+Parâmetros: {'bow__max_df': 0.8, 'bow__max_features': 350, 'bow__min_df': 5, 'bow__ngram_range': (1, 1), 'knn__metric': 'cosine', 'knn__n_neighbors': 9}
+  • Acurácia (média CV) : 0.6772
+  • Precisão (média CV) : 0.6930
+  • Recall   (média CV) : 0.6364
+  • F1-Score (média CV) : 0.6634
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1590.8
+      VN (Verdadeiros Negativos) : 1795.0
+      FP (Falsos Positivos)     : 705.0
+      FN (Falsos Negativos)     : 909.0
+
+[Combinação 7/24]
+Parâmetros: {'bow__max_df': 0.8, 'bow__max_features': 500, 'bow__min_df': 5, 'bow__ngram_range': (1, 1), 'knn__metric': 'euclidean', 'knn__n_neighbors': 5}
+  • Acurácia (média CV) : 0.6233
+  • Precisão (média CV) : 0.6257
+  • Recall   (média CV) : 0.6143
+  • F1-Score (média CV) : 0.6198
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1535.6
+      VN (Verdadeiros Negativos) : 1580.6
+      FP (Falsos Positivos)     : 919.4
+      FN (Falsos Negativos)     : 964.2
+
+[Combinação 8/24]
+Parâmetros: {'bow__max_df': 0.8, 'bow__max_features': 500, 'bow__min_df': 5, 'bow__ngram_range': (1, 1), 'knn__metric': 'euclidean', 'knn__n_neighbors': 9}
+  • Acurácia (média CV) : 0.6337
+  • Precisão (média CV) : 0.6382
+  • Recall   (média CV) : 0.6184
+  • F1-Score (média CV) : 0.6278
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1545.8
+      VN (Verdadeiros Negativos) : 1622.6
+      FP (Falsos Positivos)     : 877.4
+      FN (Falsos Negativos)     : 954.0
+
+[Combinação 9/24]
+Parâmetros: {'bow__max_df': 0.8, 'bow__max_features': 500, 'bow__min_df': 5, 'bow__ngram_range': (1, 1), 'knn__metric': 'manhattan', 'knn__n_neighbors': 5}
+  • Acurácia (média CV) : 0.6140
+  • Precisão (média CV) : 0.6399
+  • Recall   (média CV) : 0.5229
+  • F1-Score (média CV) : 0.5750
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1307.2
+      VN (Verdadeiros Negativos) : 1762.6
+      FP (Falsos Positivos)     : 737.4
+      FN (Falsos Negativos)     : 1192.6
+
+[Combinação 10/24]
+Parâmetros: {'bow__max_df': 0.8, 'bow__max_features': 500, 'bow__min_df': 5, 'bow__ngram_range': (1, 1), 'knn__metric': 'manhattan', 'knn__n_neighbors': 9}
+  • Acurácia (média CV) : 0.6293
+  • Precisão (média CV) : 0.6616
+  • Recall   (média CV) : 0.5316
+  • F1-Score (média CV) : 0.5882
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1328.8
+      VN (Verdadeiros Negativos) : 1817.6
+      FP (Falsos Positivos)     : 682.4
+      FN (Falsos Negativos)     : 1171.0
+
+[Combinação 11/24]
+Parâmetros: {'bow__max_df': 0.8, 'bow__max_features': 500, 'bow__min_df': 5, 'bow__ngram_range': (1, 1), 'knn__metric': 'cosine', 'knn__n_neighbors': 5}
+  • Acurácia (média CV) : 0.6718
+  • Precisão (média CV) : 0.6843
+  • Recall   (média CV) : 0.6382
+  • F1-Score (média CV) : 0.6602
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1595.4
+      VN (Verdadeiros Negativos) : 1763.4
+      FP (Falsos Positivos)     : 736.6
+      FN (Falsos Negativos)     : 904.4
+
+[Combinação 12/24]
+Parâmetros: {'bow__max_df': 0.8, 'bow__max_features': 500, 'bow__min_df': 5, 'bow__ngram_range': (1, 1), 'knn__metric': 'cosine', 'knn__n_neighbors': 9}
+  • Acurácia (média CV) : 0.6835
+  • Precisão (média CV) : 0.7035
+  • Recall   (média CV) : 0.6344
+  • F1-Score (média CV) : 0.6670
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1586.0
+      VN (Verdadeiros Negativos) : 1831.2
+      FP (Falsos Positivos)     : 668.8
+      FN (Falsos Negativos)     : 913.8
+
+[Combinação 13/24]
+Parâmetros: {'bow__max_df': 0.9, 'bow__max_features': 350, 'bow__min_df': 5, 'bow__ngram_range': (1, 1), 'knn__metric': 'euclidean', 'knn__n_neighbors': 5}
+  • Acurácia (média CV) : 0.6265
+  • Precisão (média CV) : 0.6210
+  • Recall   (média CV) : 0.6506
+  • F1-Score (média CV) : 0.6352
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1626.4
+      VN (Verdadeiros Negativos) : 1506.2
+      FP (Falsos Positivos)     : 993.8
+      FN (Falsos Negativos)     : 873.4
+
+[Combinação 14/24]
+Parâmetros: {'bow__max_df': 0.9, 'bow__max_features': 350, 'bow__min_df': 5, 'bow__ngram_range': (1, 1), 'knn__metric': 'euclidean', 'knn__n_neighbors': 9}
+  • Acurácia (média CV) : 0.6406
+  • Precisão (média CV) : 0.6345
+  • Recall   (média CV) : 0.6638
+  • F1-Score (média CV) : 0.6486
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1659.4
+      VN (Verdadeiros Negativos) : 1543.4
+      FP (Falsos Positivos)     : 956.6
+      FN (Falsos Negativos)     : 840.4
+
+[Combinação 15/24]
+Parâmetros: {'bow__max_df': 0.9, 'bow__max_features': 350, 'bow__min_df': 5, 'bow__ngram_range': (1, 1), 'knn__metric': 'manhattan', 'knn__n_neighbors': 5}
+  • Acurácia (média CV) : 0.6221
+  • Precisão (média CV) : 0.6198
+  • Recall   (média CV) : 0.6325
+  • F1-Score (média CV) : 0.6258
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1581.2
+      VN (Verdadeiros Negativos) : 1529.0
+      FP (Falsos Positivos)     : 971.0
+      FN (Falsos Negativos)     : 918.6
+
+[Combinação 16/24]
+Parâmetros: {'bow__max_df': 0.9, 'bow__max_features': 350, 'bow__min_df': 5, 'bow__ngram_range': (1, 1), 'knn__metric': 'manhattan', 'knn__n_neighbors': 9}
+  • Acurácia (média CV) : 0.6416
+  • Precisão (média CV) : 0.6368
+  • Recall   (média CV) : 0.6609
+  • F1-Score (média CV) : 0.6481
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1652.2
+      VN (Verdadeiros Negativos) : 1555.6
+      FP (Falsos Positivos)     : 944.4
+      FN (Falsos Negativos)     : 847.6
+
+[Combinação 17/24]
+Parâmetros: {'bow__max_df': 0.9, 'bow__max_features': 350, 'bow__min_df': 5, 'bow__ngram_range': (1, 1), 'knn__metric': 'cosine', 'knn__n_neighbors': 5}
+  • Acurácia (média CV) : 0.6653
+  • Precisão (média CV) : 0.6754
+  • Recall   (média CV) : 0.6369
+  • F1-Score (média CV) : 0.6555
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1592.2
+      VN (Verdadeiros Negativos) : 1734.2
+      FP (Falsos Positivos)     : 765.8
+      FN (Falsos Negativos)     : 907.6
+
+[Combinação 18/24]
+Parâmetros: {'bow__max_df': 0.9, 'bow__max_features': 350, 'bow__min_df': 5, 'bow__ngram_range': (1, 1), 'knn__metric': 'cosine', 'knn__n_neighbors': 9}
+  • Acurácia (média CV) : 0.6772
+  • Precisão (média CV) : 0.6930
+  • Recall   (média CV) : 0.6364
+  • F1-Score (média CV) : 0.6634
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1590.8
+      VN (Verdadeiros Negativos) : 1795.0
+      FP (Falsos Positivos)     : 705.0
+      FN (Falsos Negativos)     : 909.0
+
+[Combinação 19/24]
+Parâmetros: {'bow__max_df': 0.9, 'bow__max_features': 500, 'bow__min_df': 5, 'bow__ngram_range': (1, 1), 'knn__metric': 'euclidean', 'knn__n_neighbors': 5}
+  • Acurácia (média CV) : 0.6233
+  • Precisão (média CV) : 0.6257
+  • Recall   (média CV) : 0.6143
+  • F1-Score (média CV) : 0.6198
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1535.6
+      VN (Verdadeiros Negativos) : 1580.6
+      FP (Falsos Positivos)     : 919.4
+      FN (Falsos Negativos)     : 964.2
+
+[Combinação 20/24]
+Parâmetros: {'bow__max_df': 0.9, 'bow__max_features': 500, 'bow__min_df': 5, 'bow__ngram_range': (1, 1), 'knn__metric': 'euclidean', 'knn__n_neighbors': 9}
+  • Acurácia (média CV) : 0.6337
+  • Precisão (média CV) : 0.6382
+  • Recall   (média CV) : 0.6184
+  • F1-Score (média CV) : 0.6278
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1545.8
+      VN (Verdadeiros Negativos) : 1622.6
+      FP (Falsos Positivos)     : 877.4
+      FN (Falsos Negativos)     : 954.0
+
+[Combinação 21/24]
+Parâmetros: {'bow__max_df': 0.9, 'bow__max_features': 500, 'bow__min_df': 5, 'bow__ngram_range': (1, 1), 'knn__metric': 'manhattan', 'knn__n_neighbors': 5}
+  • Acurácia (média CV) : 0.6140
+  • Precisão (média CV) : 0.6399
+  • Recall   (média CV) : 0.5229
+  • F1-Score (média CV) : 0.5750
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1307.2
+      VN (Verdadeiros Negativos) : 1762.6
+      FP (Falsos Positivos)     : 737.4
+      FN (Falsos Negativos)     : 1192.6
+
+[Combinação 22/24]
+Parâmetros: {'bow__max_df': 0.9, 'bow__max_features': 500, 'bow__min_df': 5, 'bow__ngram_range': (1, 1), 'knn__metric': 'manhattan', 'knn__n_neighbors': 9}
+  • Acurácia (média CV) : 0.6293
+  • Precisão (média CV) : 0.6616
+  • Recall   (média CV) : 0.5316
+  • F1-Score (média CV) : 0.5882
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1328.8
+      VN (Verdadeiros Negativos) : 1817.6
+      FP (Falsos Positivos)     : 682.4
+      FN (Falsos Negativos)     : 1171.0
+
+[Combinação 23/24]
+Parâmetros: {'bow__max_df': 0.9, 'bow__max_features': 500, 'bow__min_df': 5, 'bow__ngram_range': (1, 1), 'knn__metric': 'cosine', 'knn__n_neighbors': 5}
+  • Acurácia (média CV) : 0.6718
+  • Precisão (média CV) : 0.6843
+  • Recall   (média CV) : 0.6382
+  • F1-Score (média CV) : 0.6602
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1595.4
+      VN (Verdadeiros Negativos) : 1763.4
+      FP (Falsos Positivos)     : 736.6
+      FN (Falsos Negativos)     : 904.4
+
+[Combinação 24/24]
+Parâmetros: {'bow__max_df': 0.9, 'bow__max_features': 500, 'bow__min_df': 5, 'bow__ngram_range': (1, 1), 'knn__metric': 'cosine', 'knn__n_neighbors': 9}
+  • Acurácia (média CV) : 0.6835
+  • Precisão (média CV) : 0.7035
+  • Recall   (média CV) : 0.6344
+  • F1-Score (média CV) : 0.6670
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1586.0
+      VN (Verdadeiros Negativos) : 1831.2
+      FP (Falsos Positivos)     : 668.8
+      FN (Falsos Negativos)     : 913.8
+
+--------------------------------------------------------------------------------
+>>> VENCEDOR DO BoW <<<
+Melhores Parâmetros : {'bow__max_df': 0.8, 'bow__max_features': 500, 'bow__min_df': 5, 'bow__ngram_range': (1, 1), 'knn__metric': 'cosine', 'knn__n_neighbors': 9}
+Melhor Acurácia     : 0.6835
+--------------------------------------------------------------------------------
+
+Fitting 5 folds for each of 36 candidates, totalling 180 fits
+
+================================================================================
+          RELATÓRIO COMPLETO DE RESULTADOS: LSA
+================================================================================
+
+[Combinação 1/36]
+Parâmetros: {'knn__metric': 'euclidean', 'knn__n_neighbors': 5, 'svd__n_components': 100, 'tfidf__max_df': 0.8, 'tfidf__max_features': 500, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.6926
+  • Precisão (média CV) : 0.6930
+  • Recall   (média CV) : 0.6917
+  • F1-Score (média CV) : 0.6923
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1729.0
+      VN (Verdadeiros Negativos) : 1733.8
+      FP (Falsos Positivos)     : 766.2
+      FN (Falsos Negativos)     : 770.8
+
+[Combinação 2/36]
+Parâmetros: {'knn__metric': 'euclidean', 'knn__n_neighbors': 5, 'svd__n_components': 100, 'tfidf__max_df': 0.8, 'tfidf__max_features': 700, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.6998
+  • Precisão (média CV) : 0.7014
+  • Recall   (média CV) : 0.6965
+  • F1-Score (média CV) : 0.6987
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1741.0
+      VN (Verdadeiros Negativos) : 1757.8
+      FP (Falsos Positivos)     : 742.2
+      FN (Falsos Negativos)     : 758.8
+
+[Combinação 3/36]
+Parâmetros: {'knn__metric': 'euclidean', 'knn__n_neighbors': 5, 'svd__n_components': 100, 'tfidf__max_df': 0.8, 'tfidf__max_features': 1000, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.7017
+  • Precisão (média CV) : 0.7080
+  • Recall   (média CV) : 0.6868
+  • F1-Score (média CV) : 0.6972
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1716.8
+      VN (Verdadeiros Negativos) : 1791.8
+      FP (Falsos Positivos)     : 708.2
+      FN (Falsos Negativos)     : 783.0
+
+[Combinação 4/36]
+Parâmetros: {'knn__metric': 'euclidean', 'knn__n_neighbors': 5, 'svd__n_components': 100, 'tfidf__max_df': 0.9, 'tfidf__max_features': 500, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.6926
+  • Precisão (média CV) : 0.6930
+  • Recall   (média CV) : 0.6917
+  • F1-Score (média CV) : 0.6923
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1729.0
+      VN (Verdadeiros Negativos) : 1733.8
+      FP (Falsos Positivos)     : 766.2
+      FN (Falsos Negativos)     : 770.8
+
+[Combinação 5/36]
+Parâmetros: {'knn__metric': 'euclidean', 'knn__n_neighbors': 5, 'svd__n_components': 100, 'tfidf__max_df': 0.9, 'tfidf__max_features': 700, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.6998
+  • Precisão (média CV) : 0.7014
+  • Recall   (média CV) : 0.6965
+  • F1-Score (média CV) : 0.6987
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1741.0
+      VN (Verdadeiros Negativos) : 1757.8
+      FP (Falsos Positivos)     : 742.2
+      FN (Falsos Negativos)     : 758.8
+
+[Combinação 6/36]
+Parâmetros: {'knn__metric': 'euclidean', 'knn__n_neighbors': 5, 'svd__n_components': 100, 'tfidf__max_df': 0.9, 'tfidf__max_features': 1000, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.7017
+  • Precisão (média CV) : 0.7080
+  • Recall   (média CV) : 0.6868
+  • F1-Score (média CV) : 0.6972
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1716.8
+      VN (Verdadeiros Negativos) : 1791.8
+      FP (Falsos Positivos)     : 708.2
+      FN (Falsos Negativos)     : 783.0
+
+[Combinação 7/36]
+Parâmetros: {'knn__metric': 'euclidean', 'knn__n_neighbors': 9, 'svd__n_components': 100, 'tfidf__max_df': 0.8, 'tfidf__max_features': 500, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.7117
+  • Precisão (média CV) : 0.7132
+  • Recall   (média CV) : 0.7085
+  • F1-Score (média CV) : 0.7107
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1771.0
+      VN (Verdadeiros Negativos) : 1787.2
+      FP (Falsos Positivos)     : 712.8
+      FN (Falsos Negativos)     : 728.8
+
+[Combinação 8/36]
+Parâmetros: {'knn__metric': 'euclidean', 'knn__n_neighbors': 9, 'svd__n_components': 100, 'tfidf__max_df': 0.8, 'tfidf__max_features': 700, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.7201
+  • Precisão (média CV) : 0.7211
+  • Recall   (média CV) : 0.7184
+  • F1-Score (média CV) : 0.7196
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1795.8
+      VN (Verdadeiros Negativos) : 1804.8
+      FP (Falsos Positivos)     : 695.2
+      FN (Falsos Negativos)     : 704.0
+
+[Combinação 9/36]
+Parâmetros: {'knn__metric': 'euclidean', 'knn__n_neighbors': 9, 'svd__n_components': 100, 'tfidf__max_df': 0.8, 'tfidf__max_features': 1000, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.7224
+  • Precisão (média CV) : 0.7284
+  • Recall   (média CV) : 0.7096
+  • F1-Score (média CV) : 0.7188
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1773.8
+      VN (Verdadeiros Negativos) : 1838.2
+      FP (Falsos Positivos)     : 661.8
+      FN (Falsos Negativos)     : 726.0
+
+[Combinação 10/36]
+Parâmetros: {'knn__metric': 'euclidean', 'knn__n_neighbors': 9, 'svd__n_components': 100, 'tfidf__max_df': 0.9, 'tfidf__max_features': 500, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.7117
+  • Precisão (média CV) : 0.7132
+  • Recall   (média CV) : 0.7085
+  • F1-Score (média CV) : 0.7107
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1771.0
+      VN (Verdadeiros Negativos) : 1787.2
+      FP (Falsos Positivos)     : 712.8
+      FN (Falsos Negativos)     : 728.8
+
+[Combinação 11/36]
+Parâmetros: {'knn__metric': 'euclidean', 'knn__n_neighbors': 9, 'svd__n_components': 100, 'tfidf__max_df': 0.9, 'tfidf__max_features': 700, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.7201
+  • Precisão (média CV) : 0.7211
+  • Recall   (média CV) : 0.7184
+  • F1-Score (média CV) : 0.7196
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1795.8
+      VN (Verdadeiros Negativos) : 1804.8
+      FP (Falsos Positivos)     : 695.2
+      FN (Falsos Negativos)     : 704.0
+
+[Combinação 12/36]
+Parâmetros: {'knn__metric': 'euclidean', 'knn__n_neighbors': 9, 'svd__n_components': 100, 'tfidf__max_df': 0.9, 'tfidf__max_features': 1000, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.7224
+  • Precisão (média CV) : 0.7284
+  • Recall   (média CV) : 0.7096
+  • F1-Score (média CV) : 0.7188
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1773.8
+      VN (Verdadeiros Negativos) : 1838.2
+      FP (Falsos Positivos)     : 661.8
+      FN (Falsos Negativos)     : 726.0
+
+[Combinação 13/36]
+Parâmetros: {'knn__metric': 'manhattan', 'knn__n_neighbors': 5, 'svd__n_components': 100, 'tfidf__max_df': 0.8, 'tfidf__max_features': 500, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.6806
+  • Precisão (média CV) : 0.6807
+  • Recall   (média CV) : 0.6805
+  • F1-Score (média CV) : 0.6806
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1701.2
+      VN (Verdadeiros Negativos) : 1701.8
+      FP (Falsos Positivos)     : 798.2
+      FN (Falsos Negativos)     : 798.6
+
+[Combinação 14/36]
+Parâmetros: {'knn__metric': 'manhattan', 'knn__n_neighbors': 5, 'svd__n_components': 100, 'tfidf__max_df': 0.8, 'tfidf__max_features': 700, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.6931
+  • Precisão (média CV) : 0.6897
+  • Recall   (média CV) : 0.7021
+  • F1-Score (média CV) : 0.6958
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1755.0
+      VN (Verdadeiros Negativos) : 1710.6
+      FP (Falsos Positivos)     : 789.4
+      FN (Falsos Negativos)     : 744.8
+
+[Combinação 15/36]
+Parâmetros: {'knn__metric': 'manhattan', 'knn__n_neighbors': 5, 'svd__n_components': 100, 'tfidf__max_df': 0.8, 'tfidf__max_features': 1000, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.6924
+  • Precisão (média CV) : 0.6948
+  • Recall   (média CV) : 0.6863
+  • F1-Score (média CV) : 0.6905
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1715.6
+      VN (Verdadeiros Negativos) : 1746.4
+      FP (Falsos Positivos)     : 753.6
+      FN (Falsos Negativos)     : 784.2
+
+[Combinação 16/36]
+Parâmetros: {'knn__metric': 'manhattan', 'knn__n_neighbors': 5, 'svd__n_components': 100, 'tfidf__max_df': 0.9, 'tfidf__max_features': 500, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.6806
+  • Precisão (média CV) : 0.6807
+  • Recall   (média CV) : 0.6805
+  • F1-Score (média CV) : 0.6806
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1701.2
+      VN (Verdadeiros Negativos) : 1701.8
+      FP (Falsos Positivos)     : 798.2
+      FN (Falsos Negativos)     : 798.6
+
+[Combinação 17/36]
+Parâmetros: {'knn__metric': 'manhattan', 'knn__n_neighbors': 5, 'svd__n_components': 100, 'tfidf__max_df': 0.9, 'tfidf__max_features': 700, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.6931
+  • Precisão (média CV) : 0.6897
+  • Recall   (média CV) : 0.7021
+  • F1-Score (média CV) : 0.6958
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1755.0
+      VN (Verdadeiros Negativos) : 1710.6
+      FP (Falsos Positivos)     : 789.4
+      FN (Falsos Negativos)     : 744.8
+
+[Combinação 18/36]
+Parâmetros: {'knn__metric': 'manhattan', 'knn__n_neighbors': 5, 'svd__n_components': 100, 'tfidf__max_df': 0.9, 'tfidf__max_features': 1000, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.6924
+  • Precisão (média CV) : 0.6948
+  • Recall   (média CV) : 0.6863
+  • F1-Score (média CV) : 0.6905
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1715.6
+      VN (Verdadeiros Negativos) : 1746.4
+      FP (Falsos Positivos)     : 753.6
+      FN (Falsos Negativos)     : 784.2
+
+[Combinação 19/36]
+Parâmetros: {'knn__metric': 'manhattan', 'knn__n_neighbors': 9, 'svd__n_components': 100, 'tfidf__max_df': 0.8, 'tfidf__max_features': 500, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.7034
+  • Precisão (média CV) : 0.7027
+  • Recall   (média CV) : 0.7053
+  • F1-Score (média CV) : 0.7039
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1763.0
+      VN (Verdadeiros Negativos) : 1753.8
+      FP (Falsos Positivos)     : 746.2
+      FN (Falsos Negativos)     : 736.8
+
+[Combinação 20/36]
+Parâmetros: {'knn__metric': 'manhattan', 'knn__n_neighbors': 9, 'svd__n_components': 100, 'tfidf__max_df': 0.8, 'tfidf__max_features': 700, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.7087
+  • Precisão (média CV) : 0.7044
+  • Recall   (média CV) : 0.7196
+  • F1-Score (média CV) : 0.7118
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1798.8
+      VN (Verdadeiros Negativos) : 1744.8
+      FP (Falsos Positivos)     : 755.2
+      FN (Falsos Negativos)     : 701.0
+
+[Combinação 21/36]
+Parâmetros: {'knn__metric': 'manhattan', 'knn__n_neighbors': 9, 'svd__n_components': 100, 'tfidf__max_df': 0.8, 'tfidf__max_features': 1000, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.7128
+  • Precisão (média CV) : 0.7120
+  • Recall   (média CV) : 0.7146
+  • F1-Score (média CV) : 0.7133
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1786.4
+      VN (Verdadeiros Negativos) : 1777.6
+      FP (Falsos Positivos)     : 722.4
+      FN (Falsos Negativos)     : 713.4
+
+[Combinação 22/36]
+Parâmetros: {'knn__metric': 'manhattan', 'knn__n_neighbors': 9, 'svd__n_components': 100, 'tfidf__max_df': 0.9, 'tfidf__max_features': 500, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.7034
+  • Precisão (média CV) : 0.7027
+  • Recall   (média CV) : 0.7053
+  • F1-Score (média CV) : 0.7039
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1763.0
+      VN (Verdadeiros Negativos) : 1753.8
+      FP (Falsos Positivos)     : 746.2
+      FN (Falsos Negativos)     : 736.8
+
+[Combinação 23/36]
+Parâmetros: {'knn__metric': 'manhattan', 'knn__n_neighbors': 9, 'svd__n_components': 100, 'tfidf__max_df': 0.9, 'tfidf__max_features': 700, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.7087
+  • Precisão (média CV) : 0.7044
+  • Recall   (média CV) : 0.7196
+  • F1-Score (média CV) : 0.7118
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1798.8
+      VN (Verdadeiros Negativos) : 1744.8
+      FP (Falsos Positivos)     : 755.2
+      FN (Falsos Negativos)     : 701.0
+
+[Combinação 24/36]
+Parâmetros: {'knn__metric': 'manhattan', 'knn__n_neighbors': 9, 'svd__n_components': 100, 'tfidf__max_df': 0.9, 'tfidf__max_features': 1000, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.7128
+  • Precisão (média CV) : 0.7120
+  • Recall   (média CV) : 0.7146
+  • F1-Score (média CV) : 0.7133
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1786.4
+      VN (Verdadeiros Negativos) : 1777.6
+      FP (Falsos Positivos)     : 722.4
+      FN (Falsos Negativos)     : 713.4
+
+[Combinação 25/36]
+Parâmetros: {'knn__metric': 'cosine', 'knn__n_neighbors': 5, 'svd__n_components': 100, 'tfidf__max_df': 0.8, 'tfidf__max_features': 500, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.7087
+  • Precisão (média CV) : 0.7168
+  • Recall   (média CV) : 0.6904
+  • F1-Score (média CV) : 0.7033
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1725.8
+      VN (Verdadeiros Negativos) : 1817.8
+      FP (Falsos Positivos)     : 682.2
+      FN (Falsos Negativos)     : 774.0
+
+[Combinação 26/36]
+Parâmetros: {'knn__metric': 'cosine', 'knn__n_neighbors': 5, 'svd__n_components': 100, 'tfidf__max_df': 0.8, 'tfidf__max_features': 700, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.7131
+  • Precisão (média CV) : 0.7217
+  • Recall   (média CV) : 0.6943
+  • F1-Score (média CV) : 0.7076
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1735.6
+      VN (Verdadeiros Negativos) : 1830.0
+      FP (Falsos Positivos)     : 670.0
+      FN (Falsos Negativos)     : 764.2
+
+[Combinação 27/36]
+Parâmetros: {'knn__metric': 'cosine', 'knn__n_neighbors': 5, 'svd__n_components': 100, 'tfidf__max_df': 0.8, 'tfidf__max_features': 1000, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.7222
+  • Precisão (média CV) : 0.7324
+  • Recall   (média CV) : 0.7009
+  • F1-Score (média CV) : 0.7162
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1752.0
+      VN (Verdadeiros Negativos) : 1859.0
+      FP (Falsos Positivos)     : 641.0
+      FN (Falsos Negativos)     : 747.8
+
+[Combinação 28/36]
+Parâmetros: {'knn__metric': 'cosine', 'knn__n_neighbors': 5, 'svd__n_components': 100, 'tfidf__max_df': 0.9, 'tfidf__max_features': 500, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.7087
+  • Precisão (média CV) : 0.7168
+  • Recall   (média CV) : 0.6904
+  • F1-Score (média CV) : 0.7033
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1725.8
+      VN (Verdadeiros Negativos) : 1817.8
+      FP (Falsos Positivos)     : 682.2
+      FN (Falsos Negativos)     : 774.0
+
+[Combinação 29/36]
+Parâmetros: {'knn__metric': 'cosine', 'knn__n_neighbors': 5, 'svd__n_components': 100, 'tfidf__max_df': 0.9, 'tfidf__max_features': 700, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.7131
+  • Precisão (média CV) : 0.7217
+  • Recall   (média CV) : 0.6943
+  • F1-Score (média CV) : 0.7076
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1735.6
+      VN (Verdadeiros Negativos) : 1830.0
+      FP (Falsos Positivos)     : 670.0
+      FN (Falsos Negativos)     : 764.2
+
+[Combinação 30/36]
+Parâmetros: {'knn__metric': 'cosine', 'knn__n_neighbors': 5, 'svd__n_components': 100, 'tfidf__max_df': 0.9, 'tfidf__max_features': 1000, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.7222
+  • Precisão (média CV) : 0.7324
+  • Recall   (média CV) : 0.7009
+  • F1-Score (média CV) : 0.7162
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1752.0
+      VN (Verdadeiros Negativos) : 1859.0
+      FP (Falsos Positivos)     : 641.0
+      FN (Falsos Negativos)     : 747.8
+
+[Combinação 31/36]
+Parâmetros: {'knn__metric': 'cosine', 'knn__n_neighbors': 9, 'svd__n_components': 100, 'tfidf__max_df': 0.8, 'tfidf__max_features': 500, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.7238
+  • Precisão (média CV) : 0.7344
+  • Recall   (média CV) : 0.7016
+  • F1-Score (média CV) : 0.7175
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1753.8
+      VN (Verdadeiros Negativos) : 1865.0
+      FP (Falsos Positivos)     : 635.0
+      FN (Falsos Negativos)     : 746.0
+
+[Combinação 32/36]
+Parâmetros: {'knn__metric': 'cosine', 'knn__n_neighbors': 9, 'svd__n_components': 100, 'tfidf__max_df': 0.8, 'tfidf__max_features': 700, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.7274
+  • Precisão (média CV) : 0.7379
+  • Recall   (média CV) : 0.7060
+  • F1-Score (média CV) : 0.7214
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1764.8
+      VN (Verdadeiros Negativos) : 1872.2
+      FP (Falsos Positivos)     : 627.8
+      FN (Falsos Negativos)     : 735.0
+
+[Combinação 33/36]
+Parâmetros: {'knn__metric': 'cosine', 'knn__n_neighbors': 9, 'svd__n_components': 100, 'tfidf__max_df': 0.8, 'tfidf__max_features': 1000, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.7359
+  • Precisão (média CV) : 0.7470
+  • Recall   (média CV) : 0.7140
+  • F1-Score (média CV) : 0.7300
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1784.8
+      VN (Verdadeiros Negativos) : 1894.6
+      FP (Falsos Positivos)     : 605.4
+      FN (Falsos Negativos)     : 715.0
+
+[Combinação 34/36]
+Parâmetros: {'knn__metric': 'cosine', 'knn__n_neighbors': 9, 'svd__n_components': 100, 'tfidf__max_df': 0.9, 'tfidf__max_features': 500, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.7238
+  • Precisão (média CV) : 0.7344
+  • Recall   (média CV) : 0.7016
+  • F1-Score (média CV) : 0.7175
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1753.8
+      VN (Verdadeiros Negativos) : 1865.0
+      FP (Falsos Positivos)     : 635.0
+      FN (Falsos Negativos)     : 746.0
+
+[Combinação 35/36]
+Parâmetros: {'knn__metric': 'cosine', 'knn__n_neighbors': 9, 'svd__n_components': 100, 'tfidf__max_df': 0.9, 'tfidf__max_features': 700, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.7274
+  • Precisão (média CV) : 0.7379
+  • Recall   (média CV) : 0.7060
+  • F1-Score (média CV) : 0.7214
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1764.8
+      VN (Verdadeiros Negativos) : 1872.2
+      FP (Falsos Positivos)     : 627.8
+      FN (Falsos Negativos)     : 735.0
+
+[Combinação 36/36]
+Parâmetros: {'knn__metric': 'cosine', 'knn__n_neighbors': 9, 'svd__n_components': 100, 'tfidf__max_df': 0.9, 'tfidf__max_features': 1000, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+  • Acurácia (média CV) : 0.7359
+  • Precisão (média CV) : 0.7470
+  • Recall   (média CV) : 0.7140
+  • F1-Score (média CV) : 0.7300
+  • Matriz de Confusão (média por fold):
+      VP (Verdadeiros Positivos) : 1784.8
+      VN (Verdadeiros Negativos) : 1894.6
+      FP (Falsos Positivos)     : 605.4
+      FN (Falsos Negativos)     : 715.0
+
+--------------------------------------------------------------------------------
+>>> VENCEDOR DO LSA <<<
+Melhores Parâmetros : {'knn__metric': 'cosine', 'knn__n_neighbors': 9, 'svd__n_components': 100, 'tfidf__max_df': 0.8, 'tfidf__max_features': 1000, 'tfidf__min_df': 5, 'tfidf__ngram_range': (1, 1)}
+Melhor Acurácia     : 0.7359
+--------------------------------------------------------------------------------
+

@@ -8,6 +8,7 @@ from sklearn.pipeline import Pipeline
 from sklearn.model_selection import GridSearchCV
 from sklearn.metrics import make_scorer, confusion_matrix
 from nltk.corpus import stopwords
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.decomposition import TruncatedSVD
@@ -205,7 +206,7 @@ def teste(pipeline, parametros_escolhidos, X_train_texts, y_train, X_test_texts,
 	tn, fp, fn, tp = confusion_matrix(y_test, y_pred).ravel()
 	
 	print("\n==========================================")
-	print(f"      RESULTADOS NO CONJUNTO DE TESTE {técnica}    ")
+	print(f"      RESULTADOS NO CONJUNTO DE TESTE {nome}    ")
 	print("==========================================")
 	print("Parâmetros Utilizados:", parametros_escolhidos)
 	print(f"  • Acurácia : {acc:.4f}")
