@@ -191,7 +191,7 @@ def parametros_teste(stop_words_en):
 
 def teste(pipeline, parametros_escolhidos, X_train_texts, y_train, X_test_texts, y_test, nome):
 	
-	pipeline.set_params(parametros_escolhidos)
+	pipeline.set_params(**parametros_escolhidos)
 	
 	pipeline.fit(X_train, y_train)
 	
