@@ -156,31 +156,31 @@ def parametros_teste(stop_words_en):
 	# Grid
 	# --------------------------------------------------
 	param_grid_tfidf = {
-		'tfidf__max_features': [350,500],
+		'tfidf__max_features': [500],
 		'tfidf__ngram_range': [(1,1)],
 		'tfidf__min_df': [5],
-		'tfidf__max_df': [0.8, 0.9],
-		'knn__n_neighbors': [5,9],
-		'knn__metric': ['euclidean', 'manhattan', 'cosine']
+		'tfidf__max_df': [0.8],
+		'knn__n_neighbors': [9],
+		'knn__metric': ['euclidean']
 	}
 	
 	param_grid_bow = {
-		'bow__max_features': [350, 500],
+		'bow__max_features': [500],
 		'bow__ngram_range': [(1,1)],
 		'bow__min_df': [5],
-		'bow__max_df': [0.8, 0.9],
-		'knn__n_neighbors': [5,9],
-		'knn__metric': ['euclidean', 'manhattan', 'cosine']
+		'bow__max_df': [0.8],
+		'knn__n_neighbors': [9],
+		'knn__metric': ['cosine']
 	}
 	
 	param_grid_lsa = {
-		'tfidf__max_features': [500, 700, 1000],
+		'tfidf__max_features': [1000],
     'tfidf__ngram_range': [(1,1)],
     'tfidf__min_df': [5],
-    'tfidf__max_df': [0.8, 0.9],
+    'tfidf__max_df': [0.8],
     'svd__n_components': [100],
-    'knn__n_neighbors': [5,9],
-    'knn__metric': ['euclidean', 'manhattan', 'cosine']
+    'knn__n_neighbors': [9],
+    'knn__metric': ['cosine']
 	}
 	
 	return {
