@@ -62,16 +62,32 @@ pipeline_hash = Pipeline([
     ('knn', KNeighborsClassifier())
 ])
 
+pipeline_lsa = Pipeline([
+    ('tfidf', TfidfVectorizer(stop_words=stop_words_en, lowercase=True)),
+    ('svd', TruncatedSVD(random_state=42)),
+    ('knn', KNeighborsClassifier())
+])
+
 # -----------------------------------
 # Grid 
 # -----------------------------------
+param_grid_lsa = {
+    'tfidf__max_features': [200, 300, 500],
+    'tfidf__ngram_range': [(1,1), (1,2)],
+    'tfidf__min_df': [5],
+    'tfidf__max_df': [0.8],
+    'svd__n_components': [100],
+    'knn__n_neighbors': [5],
+    'knn__metric': ['cosine']
+}
+"""
 param_grid_hash = {
     'hash__n_features': [200, 300, 500],
     'hash__ngram_range': [(1,1), (1,2)],
     'knn__n_neighbors': [5],
-    'knn__metric': ['cosine']
+    'knn__metric': ['euclidean', 'manhattan', 'cosine']
 }
-
+"""
 """
 param_grid_tfidf = {
     'tfidf__max_features': [200, 350, 500],
@@ -133,14 +149,21 @@ print("KNN + Bag Of Words")
 print(grid_bow.best_params_)
 print(grid_bow.best_score_)
 """
-
+'''
 grid_hash = GridSearchCV(pipeline_hash, param_grid_hash, cv=5, n_jobs=-1, verbose=1)
 grid_hash.fit(X_train_texts, y_train)
 
 print("KNN + Hashing")
 print(grid_hash.best_params_)
 print(grid_hash.best_score_)
+'''
 
+grid_lsa = GridSearchCV(pipeline_lsa, param_grid_lsa, cv=5, n_jobs=-1, verbose=1)
+grid_lsa.fit(X_train_texts, y_train)
+
+print("KNN + Hashing")
+print(grid_lsa.best_params_)
+print(grid_lsa.best_score_)
 '''
 import pandas as pd
 import nltk
