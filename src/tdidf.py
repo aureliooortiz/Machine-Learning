@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 
+from sklearn.decomposition import TruncatedSVD
+
 from sklearn.pipeline import Pipeline
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.neighbors import KNeighborsClassifier
@@ -72,8 +74,8 @@ pipeline_lsa = Pipeline([
 # Grid 
 # -----------------------------------
 param_grid_lsa = {
-    'tfidf__max_features': [200, 300, 500],
-    'tfidf__ngram_range': [(1,1), (1,2)],
+    'tfidf__max_features': [1000],
+    'tfidf__ngram_range': [(1,1)],
     'tfidf__min_df': [5],
     'tfidf__max_df': [0.8],
     'svd__n_components': [100],
