@@ -1,6 +1,7 @@
 from sklearn.datasets import load_svmlight_file 
-from sklearn.pipeline import make_pipeline
-from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import KNeighborsClassifier
+#from sklearn.pipeline import make_pipeline
+#from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import accuracy_score
 
 # --------------------------------------------------
@@ -50,7 +51,7 @@ def main():
 	# -----------------------------------------------------------
 	# Treinamento com dados de 1000 em 1000 blocos
 	# -----------------------------------------------------------
-	for nome in m, models.items()
+	for nome, m in models.items():
 		m.fit(X_train, y_train)
 		y_pred = m.predict(X_test)
 		acc = accuracy_score(y_test, m.predict(X_test))
