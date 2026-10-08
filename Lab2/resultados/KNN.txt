@@ -1,0 +1,22 @@
+Modelo número de exemplos: acurácia
+
+KNN em 1000 exemplos: 0.8616
+KNN em 2000 exemplos: 0.8901
+KNN em 3000 exemplos: 0.9059
+KNN em 4000 exemplos: 0.9128
+KNN em 5000 exemplos: 0.9142
+KNN em 6000 exemplos: 0.9199
+KNN em 7000 exemplos: 0.9217
+KNN em 8000 exemplos: 0.9251
+KNN em 9000 exemplos: 0.9264
+KNN em 10000 exemplos: 0.9278
+KNN em 11000 exemplos: 0.9289
+KNN em 12000 exemplos: 0.9291
+KNN em 13000 exemplos: 0.9300
+KNN em 14000 exemplos: 0.9302
+KNN em 15000 exemplos: 0.9313
+KNN em 16000 exemplos: 0.9326
+KNN em 17000 exemplos: 0.9333
+KNN em 18000 exemplos: 0.9340
+KNN em 19000 exemplos: 0.9350
+KNN em 20000 exemplos: 0.9350

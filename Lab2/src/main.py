@@ -1,3 +1,5 @@
+import hiperp_optimization
+
 from sklearn.datasets import load_svmlight_file 
 from sklearn.neighbors import KNeighborsClassifier
 #from sklearn.pipeline import make_pipeline
@@ -49,10 +51,19 @@ def main():
 		"KNN": KNeighborsClassifier(n_neighbors=9, metric='euclidean', n_jobs=-1)
 	}
 	
+	# -------------------------------------------------
+	# Validação
+	# --------------------------------------------------
+	experimentos = construir_experimentos()
+	for nome, (pipeline, grid) in experimentos.items():
+		validacao(pipeline, grid, X_train, y_train, nome)
+	
 	# ------------------------------------------------------------------
 	# Treinamento com dados de 1000 em 1000 blocos mantendo a proporção
 	# ------------------------------------------------------------------
+	print("Modelo número de exemplos: acurácia")
 	for nome, m in models.items():
+		print()
 		for n in range(1000, len(X_train) + 1, 1000):
 			if n < len(X_train):
 				X_sub, _, y_sub, _ = train_test_split(

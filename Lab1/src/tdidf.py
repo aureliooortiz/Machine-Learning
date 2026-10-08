@@ -13,8 +13,6 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.decomposition import TruncatedSVD
 
-#from sklearn.preprocessing import LabelEncoder
-
 # --------------------------------------------------
 # Funções Auxiliares para Extrair Matriz de Confusão
 # --------------------------------------------------
@@ -260,90 +258,3 @@ def main():
 	
 if __name__ == "__main__":
     main()
-
-"""
-grid_tfidf = GridSearchCV(pipeline_tfidf, param_grid_tfidf, cv=5, n_jobs=-1, verbose=1)
-grid_tfidf.fit(X_train_texts, y_train)  # passa o TEXTO cru, não o vetorizado!
-
-print("KNN + TFIDF")
-print(grid_tfidf.best_params_)
-print(grid_tfidf.best_score_)
-
-grid_bow = GridSearchCV(pipeline_bow, param_grid_bow, cv=5, n_jobs=-1, verbose=1)
-grid_bow.fit(X_train_texts, y_train)  # passa o TEXTO cru, não o vetorizado!
-
-print("KNN + Bag Of Words")
-print(grid_bow.best_params_)
-print(grid_bow.best_score_)
-
-grid_hash = GridSearchCV(pipeline_hash, param_grid_hash, cv=5, n_jobs=-1, verbose=1)
-grid_hash.fit(X_train_texts, y_train)
-
-print("KNN + Hashing")
-print(grid_hash.best_params_)
-print(grid_hash.best_score_)
-
-grid_lsa = GridSearchCV(pipeline_lsa, param_grid_lsa, cv=5, n_jobs=-1, verbose=1)
-grid_lsa.fit(X_train_texts, y_train)
-
-print("KNN + LSA")
-print(grid_lsa.best_params_)
-print(grid_lsa.best_score_)
-"""
-'''
-# --------------------------------------------------
-# TF-IDF
-# --------------------------------------------------
-print ("Extraindo representacao...")
-vectorizer = TfidfVectorizer(
-	stop_words=stop_words_en,
-	max_features=350,
-	ngram_range=(1,2),
-	lowercase=True,
-	min_df=2, max_df=.9
-)
-
-X_train = vectorizer.fit_transform(X_train_texts)
-X_test  = vectorizer.transform(X_test_texts)
-
-feature_names = vectorizer.get_feature_names_out()
-
-# --------------------------------------------------
-# Validação
-# --------------------------------------------------
-# Converte os rótulos em números:
-le = LabelEncoder()
-y_train = le.fit_transform(y_train)
-y_test = le.transform(y_test)
-
-print("Testando hiperparâmetros...")
-grid = GridSearchCV(KNeighborsClassifier(), param_grid, cv=5)
-grid.fit(X_train, y_train)
-print(grid.best_params_)
-
-# --------------------------------------------------
-# Modelo
-# --------------------------------------------------
-
-print ("Classificando com kNN...")
-
-model = KNeighborsClassifier(n_neighbors=7, metric="euclidean")
-model.fit(X_train, y_train) # "treina", armazena os dados de treinamento
-
-# --------------------------------------------------
-# Predição
-# --------------------------------------------------
-predictions = model.predict(X_test) # testa colocando os dados, calculando a distância
-#probs = model.predict_proba(X_test)
-
-# --------------------------------------------------
-# Avaliação
-# --------------------------------------------------
-from sklearn.metrics import classification_report
-print("\nEvaluation:")
-print(classification_report(y_test, predictions))
-from sklearn.metrics import confusion_matrix
-
-cm = confusion_matrix(y_test, predictions) # Compara os rótulos com a predição feita
-print (cm)
-'''
