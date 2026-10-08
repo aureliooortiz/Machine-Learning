@@ -45,7 +45,7 @@ def main():
 	# Modelos
 	# -----------------------------------------------------------
 	models = {
-		"KNN": KNeighborsClassifier(n_neighbors=9, metric='euclidean')
+		"KNN": KNeighborsClassifier(n_neighbors=9, metric='euclidean', n_jobs=-1)
 	}
 	
 	# -----------------------------------------------------------
