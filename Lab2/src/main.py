@@ -2,6 +2,7 @@ from sklearn.datasets import load_svmlight_file
 from sklearn.neighbors import KNeighborsClassifier
 #from sklearn.pipeline import make_pipeline
 #from sklearn.preprocessing import StandardScaler
+from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 
 # --------------------------------------------------
@@ -48,14 +49,21 @@ def main():
 		"KNN": KNeighborsClassifier(n_neighbors=9, metric='euclidean', n_jobs=-1)
 	}
 	
-	# -----------------------------------------------------------
-	# Treinamento com dados de 1000 em 1000 blocos
-	# -----------------------------------------------------------
+	# ------------------------------------------------------------------
+	# Treinamento com dados de 1000 em 1000 blocos mantendo a proporção
+	# ------------------------------------------------------------------
 	for nome, m in models.items():
-		m.fit(X_train, y_train)
-		y_pred = m.predict(X_test)
-		acc = accuracy_score(y_test, m.predict(X_test))
-		print(f"{nome}: {acc:.4f}")
+		for n in range(1000, len(X_train) + 1, 1000):
+			if n < len(X_train):
+				X_sub, _, y_sub, _ = train_test_split(
+						X_train, y_train, train_size=n, stratify=y_train, random_state=0
+					)
+			else:
+				X_sub, y_sub = X_train, y_train   # último passo: usa tudo
+			m.fit(X_sub, y_sub)
+			y_pred = m.predict(X_test)
+			acc = accuracy_score(y_test, y_pred)
+			print(f"{nome} em {n} exemplos: {acc:.4f}")
 	
 if __name__ == "__main__":
     main()
