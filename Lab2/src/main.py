@@ -54,20 +54,20 @@ def main():
 	# Modelos
 	# -----------------------------------------------------------
 	models = {
-		"KNN": KNeighborsClassifier(n_neighbors=9, metric='euclidean', n_jobs=-1)
+		"KNN": KNeighborsClassifier(n_neighbors=3, weights='distance', metric='manhattan', n_jobs=-1)
 	}
 	
 	# -------------------------------------------------
 	# Validação
 	# --------------------------------------------------
+	'''
 	experimentos = construir_experimentos()
 	for nome, (pipeline, grid) in experimentos.items():
 		validacao(pipeline, grid, X_train, y_train, nome)
-	
+	'''
 	# ------------------------------------------------------------------
 	# Treinamento com dados de 1000 em 1000 blocos mantendo a proporção
 	# ------------------------------------------------------------------
-	'''
 	print("Modelo número de exemplos: acurácia")
 	for nome, m in models.items():
 		print()
@@ -82,7 +82,7 @@ def main():
 			y_pred = m.predict(X_test)
 			acc = accuracy_score(y_test, y_pred)
 			print(f"{nome} em {n} exemplos: {acc:.4f}")
-	'''
+
 if __name__ == "__main__":
     main()
 
