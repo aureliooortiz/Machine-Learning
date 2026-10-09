@@ -1,11 +1,17 @@
 #!/usr/bin/env python3
 
-import pandas as pd
-import nltk
+#import pandas as pd
+#import nltk
 
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import GridSearchCV
+from sklearn.naive_bayes import GaussianNB
+from sklearn.discriminant_analysis import LinearDiscriminatAnalysis
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier
+from sklearn import svm
+
 #from sklearn.metrics import make_scorer, confusion_matrix
 #from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
@@ -14,7 +20,30 @@ def construir_experimentos():
 	# Pipeline Modelos
 	# --------------------------------------------------
 	pipeline_KNN = Pipeline([
+		('scaler', StandardScaler()),
     ('knn', KNeighborsClassifier())
+	])
+	
+	pipeline_nb = Pipeline([
+		('gaussianNB', GaussianNB())
+	])
+	
+	pipeline_lda = Pipeline([
+		('lda', LinearDiscriminantAnalysis())
+	])
+	
+	pipeline_logistic_regression = Pipeline([
+		('scaler', StandardScaler()),
+		('logistic_regression', LogisticRegression(random_state=0))
+	])
+	
+	pipeline_decision_tree = Pipeline([
+		('decision_tree', DecisionTreeClassifier(random_state=0))
+	])
+	
+	pipeline_svm = Pipeline([
+		('scaler', StandardScaler()),
+		('svm_svc', svm.SVC())
 	])
 
 	# --------------------------------------------------
