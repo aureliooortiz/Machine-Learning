@@ -1,4 +1,5 @@
-import hiperp_optimization
+from hiperp_optimization import construir_experimentos 
+from hiperp_optimization import validacao
 
 from sklearn.datasets import load_svmlight_file 
 from sklearn.neighbors import KNeighborsClassifier
