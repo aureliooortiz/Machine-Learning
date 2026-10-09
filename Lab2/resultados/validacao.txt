@@ -1,30 +1,30 @@
 Fitting 5 folds for each of 30 candidates, totalling 150 fits
 Modelo | Melhores paramêtros | Melhor acurácia média
 KNN
-{'knn__metric': 'euclidean', 'knn__n_neighbors': 3, 'knn__weights': 'distance'}
-1.0
+{'knn__metric': 'manhattan', 'knn__n_neighbors': 3, 'knn__weights': 'distance'}
+0.9561
 Fitting 5 folds for each of 6 candidates, totalling 30 fits
 Modelo | Melhores paramêtros | Melhor acurácia média
 Naive Bayes
-{'gaussianNB__var_smoothing': 0.0001}
-0.9486000000000001
+{'gaussianNB__var_smoothing': 0.001}
+0.9375
 Fitting 5 folds for each of 9 candidates, totalling 45 fits
 Modelo | Melhores paramêtros | Melhor acurácia média
 LDA
-{'lda__shrinkage': None, 'lda__solver': 'eigen'}
-0.9631000000000001
+{'lda__solver': 'svd'}
+0.9568
 Fitting 5 folds for each of 5 candidates, totalling 25 fits
 Modelo | Melhores paramêtros | Melhor acurácia média
 Logistic Regression
-{'logistic_regression__C': 100}
-1.0
+{'logistic_regression__C': 0.1}
+0.9712999999999999
 Fitting 5 folds for each of 24 candidates, totalling 120 fits
 Modelo | Melhores paramêtros | Melhor acurácia média
 Decision Tree
-{'decision_tree__criterion': 'gini', 'decision_tree__max_depth': None, 'decision_tree__min_samples_leaf': 1}
-1.0
+{'decision_tree__criterion': 'gini', 'decision_tree__max_depth': 20, 'decision_tree__min_samples_leaf': 5}
+0.9109
 Fitting 5 folds for each of 11 candidates, totalling 55 fits
 Modelo | Melhores paramêtros | Melhor acurácia média
 SVM
-{'svm_svc__C': 10, 'svm_svc__gamma': 0.01, 'svm_svc__kernel': 'rbf'}
-1.0
+{'svm_svc__C': 10, 'svm_svc__gamma': 0.001, 'svm_svc__kernel': 'rbf'}
+0.9738
