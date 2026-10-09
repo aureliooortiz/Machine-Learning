@@ -3,10 +3,9 @@ from hiperp_optimization import validacao
 
 from sklearn.datasets import load_svmlight_file 
 from sklearn.neighbors import KNeighborsClassifier
-#from sklearn.pipeline import make_pipeline
-#from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
+from sklearn.metrics import confusion_matrix
 
 # --------------------------------------------------
 # Funções Auxiliares para Extrair Matriz de Confusão
@@ -44,6 +43,12 @@ def main():
 	#Converte em array
 	y_train = y_train.astype(int)
 	y_test = y_test.astype(int)
+	
+	# ---- NOVO: remove as duplicatas do treino ----
+	# O train.txt tem 20000 linhas, mas a segunda metade é cópia exata da primeira
+	X_train = X_train[:10000]
+	y_train = y_train[:10000]
+	# ----------------------------------------------
 	
 	# -----------------------------------------------------------
 	# Modelos
