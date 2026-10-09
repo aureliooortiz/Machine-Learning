@@ -61,6 +61,7 @@ def main():
 	# ------------------------------------------------------------------
 	# Treinamento com dados de 1000 em 1000 blocos mantendo a proporção
 	# ------------------------------------------------------------------
+	'''
 	print("Modelo número de exemplos: acurácia")
 	for nome, m in models.items():
 		print()
@@ -75,7 +76,7 @@ def main():
 			y_pred = m.predict(X_test)
 			acc = accuracy_score(y_test, y_pred)
 			print(f"{nome} em {n} exemplos: {acc:.4f}")
-	
+	'''
 if __name__ == "__main__":
     main()
 
