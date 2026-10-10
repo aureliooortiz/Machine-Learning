@@ -16,7 +16,9 @@ from sklearn import svm
 
 from sklearn.pipeline import make_pipeline
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score, precision_score, recall_score
+from sklearn.metrics import accuracy_score, precision_score, recall_score, confusion matrix
+
+from plot_matrizes import plotar_matrizes
 
 def main():
 	# ------------------------------------------------------
@@ -75,6 +77,9 @@ def main():
 	# Treinamento com dados de 1000 em 1000 blocos mantendo a proporção
 	# ------------------------------------------------------------------
 	print("Modelo número de exemplos: acurácia | Precision | Recall")
+	
+	cms = {}
+	
 	erros = {}
 	i = 0
 	for nome, m in models.items():
@@ -99,9 +104,15 @@ def main():
 			i += 1
 			
 			acc = accuracy_score(y_test, y_pred)
+			if n == len(X_train):	
+				cms[nome] = confusion_matrix(y_test, y_pred, labels=range(10))
+			
 			p = precision_score(y_test, y_pred, average='macro')
-			r = recall_score(y_test, y_pred, average='macro')
+			r = recall_score(y_test, y_pred, average='macro')	
 			print(f"{nome} em {n} exemplos: {acc:.4f} | precision = {p} | recall = {r}")
+	
+	np.save("cms.npy", cms)            # guarda, para não precisar retreinar
+	plotar_matrizes(cms, "matrizes_confusao.pdf")
 	
 	'''
 	print()
