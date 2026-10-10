@@ -1,0 +1,67 @@
+Modelo número de exemplos: acurácia | Precision | Recall
+
+KNN em 1000 exemplos: 0.9203 | precision = 0.9225723319823971 | recall = 0.9191474465682298
+KNN em 2000 exemplos: 0.9366 | precision = 0.9378675087828053 | recall = 0.9359905594757688
+KNN em 3000 exemplos: 0.9410 | precision = 0.9419645849148306 | recall = 0.9405917628228586
+KNN em 4000 exemplos: 0.9443 | precision = 0.945122652937793 | recall = 0.9439245326804393
+KNN em 5000 exemplos: 0.9460 | precision = 0.9467430209027473 | recall = 0.9456064320805971
+KNN em 6000 exemplos: 0.9484 | precision = 0.9491731474740213 | recall = 0.9479658508220574
+KNN em 7000 exemplos: 0.9501 | precision = 0.950802462954632 | recall = 0.9497504581908653
+KNN em 8000 exemplos: 0.9511 | precision = 0.951691679254672 | recall = 0.9507362666482481
+KNN em 9000 exemplos: 0.9531 | precision = 0.9537383319831344 | recall = 0.9528195662928347
+KNN em 10000 exemplos: 0.9532 | precision = 0.9538689021199085 | recall = 0.9529053111459481
+
+Naive Bayes em 1000 exemplos: 0.9015 | precision = 0.9070907907653545 | recall = 0.902863743377458
+Naive Bayes em 2000 exemplos: 0.9081 | precision = 0.9118551734160227 | recall = 0.9095178476530661
+Naive Bayes em 3000 exemplos: 0.9100 | precision = 0.9142359852882551 | recall = 0.9119863516093272
+Naive Bayes em 4000 exemplos: 0.9079 | precision = 0.9128963500469635 | recall = 0.9102741776108486
+Naive Bayes em 5000 exemplos: 0.9088 | precision = 0.9138256015655122 | recall = 0.9111252139098678
+Naive Bayes em 6000 exemplos: 0.9102 | precision = 0.9146889940678673 | recall = 0.91227621047198
+Naive Bayes em 7000 exemplos: 0.9112 | precision = 0.9155929585012752 | recall = 0.9132764299868148
+Naive Bayes em 8000 exemplos: 0.9123 | precision = 0.9164442709277594 | recall = 0.9142019335510293
+Naive Bayes em 9000 exemplos: 0.9148 | precision = 0.9183799015266944 | recall = 0.9164344762772723
+Naive Bayes em 10000 exemplos: 0.9137 | precision = 0.9176475906388919 | recall = 0.9154883599186372
+
+LDA em 1000 exemplos: 0.9039 | precision = 0.9065629496550007 | recall = 0.9032710783341834
+LDA em 2000 exemplos: 0.9208 | precision = 0.9219222008936315 | recall = 0.9205079425604765
+LDA em 3000 exemplos: 0.9242 | precision = 0.9258558939585347 | recall = 0.9240872484535982
+LDA em 4000 exemplos: 0.9251 | precision = 0.9267284302626884 | recall = 0.9250323957138221
+LDA em 5000 exemplos: 0.9271 | precision = 0.9288188198239018 | recall = 0.9269972930212793
+LDA em 6000 exemplos: 0.9275 | precision = 0.9293115201117466 | recall = 0.927376007364271
+LDA em 7000 exemplos: 0.9284 | precision = 0.9301901483103684 | recall = 0.9283564259117547
+LDA em 8000 exemplos: 0.9282 | precision = 0.929990931901646 | recall = 0.9281405842182628
+LDA em 9000 exemplos: 0.9276 | precision = 0.9294078845050388 | recall = 0.9275116998199199
+LDA em 10000 exemplos: 0.9279 | precision = 0.929580984069554 | recall = 0.9278685139676253
+
+Logistic Regression em 1000 exemplos: 0.9271 | precision = 0.928404140295658 | recall = 0.9272622872081303
+Logistic Regression em 2000 exemplos: 0.9390 | precision = 0.9397542262182531 | recall = 0.9391484467329818
+Logistic Regression em 3000 exemplos: 0.9439 | precision = 0.944189104680011 | recall = 0.9441451847331054
+Logistic Regression em 4000 exemplos: 0.9470 | precision = 0.947251414309284 | recall = 0.9472716318707279
+Logistic Regression em 5000 exemplos: 0.9489 | precision = 0.9490994291521853 | recall = 0.9491622424823577
+Logistic Regression em 6000 exemplos: 0.9518 | precision = 0.9518488339079878 | recall = 0.951988343700872
+Logistic Regression em 7000 exemplos: 0.9534 | precision = 0.9535693537788662 | recall = 0.9536647903120793
+Logistic Regression em 8000 exemplos: 0.9543 | precision = 0.9544542067364435 | recall = 0.9545239219212757
+Logistic Regression em 9000 exemplos: 0.9551 | precision = 0.9551905426378171 | recall = 0.9553093669070885
+Logistic Regression em 10000 exemplos: 0.9552 | precision = 0.9552959066251914 | recall = 0.9554305090120809
+
+Decision Tree em 1000 exemplos: 0.7531 | precision = 0.7540187517436987 | recall = 0.752141825334356
+Decision Tree em 2000 exemplos: 0.8138 | precision = 0.8180850000662625 | recall = 0.8131273045506339
+Decision Tree em 3000 exemplos: 0.8201 | precision = 0.8222317893949536 | recall = 0.819435689683267
+Decision Tree em 4000 exemplos: 0.8360 | precision = 0.8396494480514672 | recall = 0.835503151544579
+Decision Tree em 5000 exemplos: 0.8376 | precision = 0.8401553295729769 | recall = 0.8365559415990488
+Decision Tree em 6000 exemplos: 0.8547 | precision = 0.8565205263142486 | recall = 0.8540954029051795
+Decision Tree em 7000 exemplos: 0.8612 | precision = 0.8647387097096176 | recall = 0.8607467692708838
+Decision Tree em 8000 exemplos: 0.8645 | precision = 0.8669952396064495 | recall = 0.8637880567239021
+Decision Tree em 9000 exemplos: 0.8608 | precision = 0.8614909011815097 | recall = 0.8600309623763834
+Decision Tree em 10000 exemplos: 0.8582 | precision = 0.8610317507864323 | recall = 0.8583168406195115
+
+SVM em 1000 exemplos: 0.9151 | precision = 0.9183213835906017 | recall = 0.915448100798516
+SVM em 2000 exemplos: 0.9340 | precision = 0.935963913700254 | recall = 0.9341755956497376
+SVM em 3000 exemplos: 0.9441 | precision = 0.9442326925381066 | recall = 0.9442936452745314
+SVM em 4000 exemplos: 0.9479 | precision = 0.9481042424480117 | recall = 0.9481090518507322
+SVM em 5000 exemplos: 0.9513 | precision = 0.9513107998687301 | recall = 0.9514112049397676
+SVM em 6000 exemplos: 0.9565 | precision = 0.9563867550366567 | recall = 0.9566197452581479
+SVM em 7000 exemplos: 0.9578 | precision = 0.9576716719083738 | recall = 0.9578403359845771
+SVM em 8000 exemplos: 0.9575 | precision = 0.95747320391798 | recall = 0.9575965995797666
+SVM em 9000 exemplos: 0.9598 | precision = 0.9598109405509122 | recall = 0.959943397782196
+SVM em 10000 exemplos: 0.9610 | precision = 0.9610844390624923 | recall = 0.9611117160672371
