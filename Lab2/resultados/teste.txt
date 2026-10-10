@@ -1,0 +1,67 @@
+Modelo número de exemplos: acurácia
+
+KNN em 1000 exemplos: 0.9203
+KNN em 2000 exemplos: 0.9366
+KNN em 3000 exemplos: 0.9410
+KNN em 4000 exemplos: 0.9443
+KNN em 5000 exemplos: 0.9460
+KNN em 6000 exemplos: 0.9484
+KNN em 7000 exemplos: 0.9501
+KNN em 8000 exemplos: 0.9511
+KNN em 9000 exemplos: 0.9531
+KNN em 10000 exemplos: 0.9532
+
+Naive Bayes em 1000 exemplos: 0.9015
+Naive Bayes em 2000 exemplos: 0.9081
+Naive Bayes em 3000 exemplos: 0.9100
+Naive Bayes em 4000 exemplos: 0.9079
+Naive Bayes em 5000 exemplos: 0.9088
+Naive Bayes em 6000 exemplos: 0.9102
+Naive Bayes em 7000 exemplos: 0.9112
+Naive Bayes em 8000 exemplos: 0.9123
+Naive Bayes em 9000 exemplos: 0.9148
+Naive Bayes em 10000 exemplos: 0.9137
+
+LDA em 1000 exemplos: 0.9039
+LDA em 2000 exemplos: 0.9208
+LDA em 3000 exemplos: 0.9242
+LDA em 4000 exemplos: 0.9251
+LDA em 5000 exemplos: 0.9271
+LDA em 6000 exemplos: 0.9275
+LDA em 7000 exemplos: 0.9284
+LDA em 8000 exemplos: 0.9282
+LDA em 9000 exemplos: 0.9276
+LDA em 10000 exemplos: 0.9279
+
+Logistic Regression em 1000 exemplos: 0.9271
+Logistic Regression em 2000 exemplos: 0.9390
+Logistic Regression em 3000 exemplos: 0.9439
+Logistic Regression em 4000 exemplos: 0.9470
+Logistic Regression em 5000 exemplos: 0.9489
+Logistic Regression em 6000 exemplos: 0.9518
+Logistic Regression em 7000 exemplos: 0.9534
+Logistic Regression em 8000 exemplos: 0.9543
+Logistic Regression em 9000 exemplos: 0.9551
+Logistic Regression em 10000 exemplos: 0.9552
+
+Decision Tree em 1000 exemplos: 0.7531
+Decision Tree em 2000 exemplos: 0.8138
+Decision Tree em 3000 exemplos: 0.8201
+Decision Tree em 4000 exemplos: 0.8360
+Decision Tree em 5000 exemplos: 0.8376
+Decision Tree em 6000 exemplos: 0.8547
+Decision Tree em 7000 exemplos: 0.8612
+Decision Tree em 8000 exemplos: 0.8645
+Decision Tree em 9000 exemplos: 0.8608
+Decision Tree em 10000 exemplos: 0.8582
+
+SVM em 1000 exemplos: 0.9151
+SVM em 2000 exemplos: 0.9340
+SVM em 3000 exemplos: 0.9441
+SVM em 4000 exemplos: 0.9479
+SVM em 5000 exemplos: 0.9513
+SVM em 6000 exemplos: 0.9565
+SVM em 7000 exemplos: 0.9578
+SVM em 8000 exemplos: 0.9575
+SVM em 9000 exemplos: 0.9598
+SVM em 10000 exemplos: 0.9610
