@@ -64,16 +64,16 @@ def main():
 			StandardScaler(),
 			KNeighborsClassifier(n_neighbors=3, weights='distance', metric='manhattan', n_jobs=-1)
 		),		
-		"Naive Bayes": GaussianNB(var_smoothing=0.001),
-		"LDA": LinearDiscriminantAnalysis(solver='svd'),
+		"Naive Bayes": GaussianNB(var_smoothing=0.001, n_jobs=-1),
+		"LDA": LinearDiscriminantAnalysis(solver='svd', n_jobs=-1),
 		"Logistic Regression": make_pipeline( 
 			StandardScaler(),
-			LogisticRegression(max_iter=1000, random_state=0, C=0.1)
+			LogisticRegression(max_iter=1000, random_state=0, C=0.1, n_jobs=-1)
 		),	
-		"Decision Tree": DecisionTreeClassifier(random_state=0, criterion='gini', max_depth=20, min_samples_leaf=5),
+		"Decision Tree": DecisionTreeClassifier(random_state=0, criterion='gini', max_depth=20, min_samples_leaf=5, n_jobs=-1),
 		"SVM": make_pipeline(
 			StandardScaler(),
-			svm.SVC(C=10, gamma=0.001, kernel='rbf')
+			svm.SVC(C=10, gamma=0.001, kernel='rbf', n_jobs=-1)
 		)	
 	}
 	
