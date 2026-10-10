@@ -3,6 +3,12 @@ from hiperp_optimization import validacao
 
 from sklearn.datasets import load_svmlight_file 
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.preprocessing import StandardScaler
+from sklearn.naive_bayes import GaussianNB
+from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
+from sklearn.linear_model import LogisticRegression
+from sklearn.tree import DecisionTreeClassifier 
+from sklearn import svm
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import confusion_matrix
@@ -54,7 +60,21 @@ def main():
 	# Modelos
 	# -----------------------------------------------------------
 	models = {
-		"KNN": KNeighborsClassifier(n_neighbors=3, weights='distance', metric='manhattan', n_jobs=-1)
+		"KNN": make_pipeline(
+			StandardScaler(),
+			KNeighborsClassifier(n_neighbors=3, weights='distance', metric='manhattan', n_jobs=-1)
+		),		
+		"Naive Bayes": GaussianNB(var_smoothing=0.001),
+		"LDA": LinearDiscriminantAnalysis(solver='svd'),
+		"Logistic Regression": make_pipeline( 
+			StandardScaler(),
+			LogisticRegression(max_iter=1000, random_state=0, C=0.1)
+		),	
+		"Decision Tree": DecisionTreeClassifier(random_state=0, criterion='gini', max_depth=20, min_samples_leaf=5),
+		"SVM": make_pipeline(
+			StandardScaler(),
+			svm.SVC(C=10, gamma=0.001, kernel='rbf')
+		)	
 	}
 	
 	# -------------------------------------------------
