@@ -103,9 +103,9 @@ def main():
 	
 	print()
 	print("Erros em comum entre cada modelo em cada tamanho de treino")
-	for i in range(0, len(erros), 1)
+	for i in range(0, len(erros), 1):
 		print()
-		for j in range(i+10, len(erros), 10)
+		for j in range(i+10, len(erros), 10):
 			print(len(set(erros[i]) & set(erros[j]))) 
 	
 	print()
