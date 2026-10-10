@@ -16,7 +16,7 @@ from sklearn import svm
 
 from sklearn.pipeline import make_pipeline
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
+from sklearn.metrics import accuracy_score, precision_score, recall_score
 
 def main():
 	# ------------------------------------------------------
@@ -66,15 +66,15 @@ def main():
 	# -------------------------------------------------
 	# Validação
 	# --------------------------------------------------
-	
+	'''
 	experimentos = construir_experimentos()
 	for nome, (pipeline, grid) in experimentos.items():
 		validacao(pipeline, grid, X_train, y_train, nome)
-	
+	'''
 	# ------------------------------------------------------------------
 	# Treinamento com dados de 1000 em 1000 blocos mantendo a proporção
 	# ------------------------------------------------------------------
-	print("Modelo número de exemplos: acurácia | Tempo de treino | Tempo de Classificação")
+	print("Modelo número de exemplos: acurácia | Precision | Recall")
 	erros = {}
 	i = 0
 	for nome, m in models.items():
@@ -99,8 +99,11 @@ def main():
 			i += 1
 			
 			acc = accuracy_score(y_test, y_pred)
-			print(f"{nome} em {n} exemplos: {acc:.4f} | treino={t_treino:.3f}s | classificação={t_classif:.3f}s")
+			p = precision_score(y_test, y_pred, average='macro')
+			r = recall_score(y_test, y_pred, average='macro')
+			print(f"{nome} em {n} exemplos: {acc:.4f} | precision = {p} | recall = {r}")
 	
+	'''
 	print()
 	print("Erros em comum entre cada modelo em cada tamanho de treino")
 	for i in range(0, len(erros), 1):
@@ -111,7 +114,7 @@ def main():
 	print()
 	print("Erros em comum entre todos os modelos usando todos os dados")
 	print(len(set(erros[9]) & set(erros[19]) & set(erros[29]) & set(erros[39]) & set(erros[49]) & set(erros[59])))
-
+	'''
 if __name__ == "__main__":
     main()
 
