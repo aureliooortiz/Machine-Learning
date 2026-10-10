@@ -1,4 +1,5 @@
 import time
+import numpy as np
 
 from hiperp_optimization import construir_experimentos 
 from hiperp_optimization import validacao
@@ -15,6 +16,7 @@ from sklearn import svm
 
 from sklearn.pipeline import make_pipeline
 from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
 
 def main():
 	# ------------------------------------------------------
@@ -73,6 +75,8 @@ def main():
 	# Treinamento com dados de 1000 em 1000 blocos mantendo a proporção
 	# ------------------------------------------------------------------
 	print("Modelo número de exemplos: acurácia | Tempo de treino | Tempo de Classificação")
+	erros = {}
+	i = 0
 	for nome, m in models.items():
 		print()
 		for n in range(1000, len(X_train) + 1, 1000):
@@ -91,8 +95,22 @@ def main():
 			y_pred = m.predict(X_test)
 			t_classif = time.perf_counter() - t0
 			
+			erros[i] = np.where(y_pred != y_test)[0]   # posições dos exemplos errados
+			i += 1
+			
 			acc = accuracy_score(y_test, y_pred)
 			print(f"{nome} em {n} exemplos: {acc:.4f} | treino={t_treino:.3f}s | classificação={t_classif:.3f}s")
+	
+	print()
+	print("Erros em comum entre cada modelo em cada tamanho de treino")
+	for i in range(0, len(erros), 1)
+		print()
+		for j in range(i+10, len(erros), 10)
+			print(len(set(erros[i]) & set(erros[j]))) 
+	
+	print()
+	print("Erros em comum entre todos os modelos usando todos os dados")
+	print(len(set(erros[9]) & set(erros[19]) & set(erros[29]) & set(erros[39]) & set(erros[49]) & set(erros[59])))
 
 if __name__ == "__main__":
     main()

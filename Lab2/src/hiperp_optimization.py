@@ -1,3 +1,5 @@
+import numpy as np
+
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import GridSearchCV
 
@@ -10,26 +12,22 @@ from sklearn.tree import DecisionTreeClassifier
 from sklearn import svm
 
 from sklearn.metrics import make_scorer, confusion_matrix
-from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
 # --------------------------------------------------
-# Funções Auxiliares para Extrair Matriz de Confusão
+# Classes do problema (rótulos 0 a 9)
 # --------------------------------------------------
-def calc_tn(y_true, y_pred):
-	cm = confusion_matrix(y_true, y_pred)
-	return cm[0, 0] if cm.shape == (2, 2) else 0
+CLASSES = list(range(10))
 
-def calc_fp(y_true, y_pred):
-	cm = confusion_matrix(y_true, y_pred)
-	return cm[0, 1] if cm.shape == (2, 2) else 0
-
-def calc_fn(y_true, y_pred):
-	cm = confusion_matrix(y_true, y_pred)
-	return cm[1, 0] if cm.shape == (2, 2) else 0
-
-def calc_tp(y_true, y_pred):
-	cm = confusion_matrix(y_true, y_pred)
-	return cm[1, 1] if cm.shape == (2, 2) else 0
+# --------------------------------------------------
+# Função auxiliar para extrair a matriz de confusão
+# --------------------------------------------------
+# O GridSearchCV só aceita scorers que devolvem UM número. Como a matriz
+# de confusão tem 10x10 = 100 células, criamos um scorer por célula (i, j):
+# número de exemplos da classe real i que foram previstos como classe j.
+def celula_cm(i, j):
+	def calc(y_true, y_pred):
+		return confusion_matrix(y_true, y_pred, labels=CLASSES)[i, j]
+	return calc
 
 def construir_experimentos():
 	# --------------------------------------------------
@@ -37,7 +35,7 @@ def construir_experimentos():
 	# --------------------------------------------------
 	pipeline_knn = Pipeline([
 		('scaler', StandardScaler()),
-    ('knn', KNeighborsClassifier())
+		('knn', KNeighborsClassifier())
 	])
 	
 	pipeline_nb = Pipeline([
@@ -111,16 +109,17 @@ def construir_experimentos():
 	}
 
 def validacao(pipeline, param_grid, X_train, y_train, modelo):
+	# Com mais de 2 classes, 'precision', 'recall' e 'f1' dão erro:
+	# é preciso dizer como fazer a média entre as classes (aqui: macro).
 	scoring = {
 		'accuracy': 'accuracy',
-		'precision': 'precision',
-		'recall': 'recall',
-		'f1': 'f1',
-		'tn': make_scorer(calc_tn),
-		'fp': make_scorer(calc_fp),
-		'fn': make_scorer(calc_fn),
-		'tp': make_scorer(calc_tp)
+		'precision': 'precision_macro',
+		'recall': 'recall_macro',
+		'f1': 'f1_macro',
 	}
+	for i in CLASSES:
+		for j in CLASSES:
+			scoring[f'cm_{i}_{j}'] = make_scorer(celula_cm(i, j))
 	
 	grid = GridSearchCV(pipeline, param_grid, cv=5, scoring=scoring, refit='accuracy', n_jobs=-1, verbose=1)
 	grid.fit(X_train, y_train)
@@ -129,25 +128,39 @@ def validacao(pipeline, param_grid, X_train, y_train, modelo):
 	total_combos = len(cv_res['params'])
 
 	print("\n" + "="*80)
-	print(f"          RELATÓRIO COMPLETO DE RESULTADOS: {nome_experimento}")
+	print(f"          RELATÓRIO COMPLETO DE RESULTADOS: {modelo}")
 	print("="*80)
 
 	# Imprime os resultados de CADA combinação de parâmetros
-	for i in range(total_combos):
-		print(f"\n[Combinação {i+1}/{total_combos}]")
-		print(f"Parâmetros: {cv_res['params'][i]}")
-		print(f"  • Acurácia (média CV) : {cv_res['mean_test_accuracy'][i]:.4f}")
-		print(f"  • Precisão (média CV) : {cv_res['mean_test_precision'][i]:.4f}")
-		print(f"  • Recall   (média CV) : {cv_res['mean_test_recall'][i]:.4f}")
-		print(f"  • F1-Score (média CV) : {cv_res['mean_test_f1'][i]:.4f}")
-		print("  • Matriz de Confusão (média por fold):")
-		print(f"      VP (Verdadeiros Positivos) : {cv_res['mean_test_tp'][i]:.1f}")
-		print(f"      VN (Verdadeiros Negativos) : {cv_res['mean_test_tn'][i]:.1f}")
-		print(f"      FP (Falsos Positivos)     : {cv_res['mean_test_fp'][i]:.1f}")
-		print(f"      FN (Falsos Negativos)     : {cv_res['mean_test_fn'][i]:.1f}")
+	for k in range(total_combos):
+		# Reconstrói a matriz 10x10 (média por fold) a partir dos scorers
+		cm = np.array([[cv_res[f'mean_test_cm_{i}_{j}'][k] for j in CLASSES] for i in CLASSES])
+
+		# Por classe (um-contra-todos), derivado da matriz
+		vp = np.diag(cm)
+		fp = cm.sum(axis=0) - vp
+		fn = cm.sum(axis=1) - vp
+		vn = cm.sum() - vp - fp - fn
+
+		print(f"\n[Combinação {k+1}/{total_combos}]")
+		print(f"Parâmetros: {cv_res['params'][k]}")
+		print(f"  • Acurácia (média CV)        : {cv_res['mean_test_accuracy'][k]:.4f}")
+		print(f"  • Precisão (média CV, macro) : {cv_res['mean_test_precision'][k]:.4f}")
+		print(f"  • Recall   (média CV, macro) : {cv_res['mean_test_recall'][k]:.4f}")
+		print(f"  • F1-Score (média CV, macro) : {cv_res['mean_test_f1'][k]:.4f}")
+
+		print("  • Matriz de Confusão (média por fold) - linhas: classe real | colunas: classe prevista")
+		print("          " + "".join(f"{j:>7d}" for j in CLASSES))
+		for i in CLASSES:
+			print(f"      {i:>3d} " + "".join(f"{cm[i, j]:>7.1f}" for j in CLASSES))
+
+		print("  • Por classe (um-contra-todos, média por fold):")
+		print("      Classe      VP      VN      FP      FN")
+		for c in CLASSES:
+			print(f"      {c:>6d} {vp[c]:>7.1f} {vn[c]:>7.1f} {fp[c]:>7.1f} {fn[c]:>7.1f}")
 
 	print("\n" + "-"*80)
-	print(f">>> VENCEDOR DO {nome_experimento} <<<")
+	print(f">>> VENCEDOR DO {modelo} <<<")
 	print("Melhores Parâmetros :", grid.best_params_)
 	print(f"Melhor Acurácia     : {grid.best_score_:.4f}")
 	print("-"*80 + "\n")
