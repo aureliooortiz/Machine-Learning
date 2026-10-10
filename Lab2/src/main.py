@@ -1,7 +1,10 @@
+import time
+
 from hiperp_optimization import construir_experimentos 
 from hiperp_optimization import validacao
 
 from sklearn.datasets import load_svmlight_file 
+
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.preprocessing import StandardScaler
 from sklearn.naive_bayes import GaussianNB
@@ -9,29 +12,9 @@ from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier 
 from sklearn import svm
+
 from sklearn.pipeline import make_pipeline
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import confusion_matrix
-
-# --------------------------------------------------
-# Funções Auxiliares para Extrair Matriz de Confusão
-# --------------------------------------------------
-def calc_tn(y_true, y_pred):
-	cm = confusion_matrix(y_true, y_pred)
-	return cm[0, 0] if cm.shape == (2, 2) else 0
-
-def calc_fp(y_true, y_pred):
-	cm = confusion_matrix(y_true, y_pred)
-	return cm[0, 1] if cm.shape == (2, 2) else 0
-
-def calc_fn(y_true, y_pred):
-	cm = confusion_matrix(y_true, y_pred)
-	return cm[1, 0] if cm.shape == (2, 2) else 0
-
-def calc_tp(y_true, y_pred):
-	cm = confusion_matrix(y_true, y_pred)
-	return cm[1, 1] if cm.shape == (2, 2) else 0
 
 def main():
 	# ------------------------------------------------------
@@ -81,15 +64,15 @@ def main():
 	# -------------------------------------------------
 	# Validação
 	# --------------------------------------------------
-	'''
+	
 	experimentos = construir_experimentos()
 	for nome, (pipeline, grid) in experimentos.items():
 		validacao(pipeline, grid, X_train, y_train, nome)
-	'''
+	
 	# ------------------------------------------------------------------
 	# Treinamento com dados de 1000 em 1000 blocos mantendo a proporção
 	# ------------------------------------------------------------------
-	print("Modelo número de exemplos: acurácia")
+	print("Modelo número de exemplos: acurácia | Tempo de treino | Tempo de Classificação")
 	for nome, m in models.items():
 		print()
 		for n in range(1000, len(X_train) + 1, 1000):
@@ -99,10 +82,17 @@ def main():
 					)
 			else:
 				X_sub, y_sub = X_train, y_train   # último passo: usa tudo
+			
+			t0 = time.perf_counter()
 			m.fit(X_sub, y_sub)
+			t_treino = time.perf_counter() - t0
+			
+			t0 = time.perf_counter()
 			y_pred = m.predict(X_test)
+			t_classif = time.perf_counter() - t0
+			
 			acc = accuracy_score(y_test, y_pred)
-			print(f"{nome} em {n} exemplos: {acc:.4f}")
+			print(f"{nome} em {n} exemplos: {acc:.4f} | treino={t_treino:.3f}s | classificação={t_classif:.3f}s")
 
 if __name__ == "__main__":
     main()

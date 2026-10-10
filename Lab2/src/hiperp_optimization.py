@@ -1,20 +1,35 @@
-#!/usr/bin/env python3
-
-#import pandas as pd
-#import nltk
-
-from sklearn.neighbors import KNeighborsClassifier
 from sklearn.pipeline import Pipeline
 from sklearn.model_selection import GridSearchCV
+
 from sklearn.preprocessing import StandardScaler
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.naive_bayes import GaussianNB
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeClassifier 
 from sklearn import svm
 
-#from sklearn.metrics import make_scorer, confusion_matrix
-#from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+from sklearn.metrics import make_scorer, confusion_matrix
+from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
+
+# --------------------------------------------------
+# Funções Auxiliares para Extrair Matriz de Confusão
+# --------------------------------------------------
+def calc_tn(y_true, y_pred):
+	cm = confusion_matrix(y_true, y_pred)
+	return cm[0, 0] if cm.shape == (2, 2) else 0
+
+def calc_fp(y_true, y_pred):
+	cm = confusion_matrix(y_true, y_pred)
+	return cm[0, 1] if cm.shape == (2, 2) else 0
+
+def calc_fn(y_true, y_pred):
+	cm = confusion_matrix(y_true, y_pred)
+	return cm[1, 0] if cm.shape == (2, 2) else 0
+
+def calc_tp(y_true, y_pred):
+	cm = confusion_matrix(y_true, y_pred)
+	return cm[1, 1] if cm.shape == (2, 2) else 0
 
 def construir_experimentos():
 	# --------------------------------------------------
@@ -96,11 +111,43 @@ def construir_experimentos():
 	}
 
 def validacao(pipeline, param_grid, X_train, y_train, modelo):
+	scoring = {
+		'accuracy': 'accuracy',
+		'precision': 'precision',
+		'recall': 'recall',
+		'f1': 'f1',
+		'tn': make_scorer(calc_tn),
+		'fp': make_scorer(calc_fp),
+		'fn': make_scorer(calc_fn),
+		'tp': make_scorer(calc_tp)
+	}
 	
-	grid = GridSearchCV(pipeline, param_grid, cv=5, scoring='accuracy', refit='accuracy', n_jobs=-1, verbose=1)
+	grid = GridSearchCV(pipeline, param_grid, cv=5, scoring=scoring, refit='accuracy', n_jobs=-1, verbose=1)
 	grid.fit(X_train, y_train)
 	
-	print("Modelo | Melhores paramêtros | Melhor acurácia média")
-	print(f"{modelo}")
-	print(f"{grid.best_params_}")
-	print(f"{grid.best_score_}")
+	cv_res = grid.cv_results_
+	total_combos = len(cv_res['params'])
+
+	print("\n" + "="*80)
+	print(f"          RELATÓRIO COMPLETO DE RESULTADOS: {nome_experimento}")
+	print("="*80)
+
+	# Imprime os resultados de CADA combinação de parâmetros
+	for i in range(total_combos):
+		print(f"\n[Combinação {i+1}/{total_combos}]")
+		print(f"Parâmetros: {cv_res['params'][i]}")
+		print(f"  • Acurácia (média CV) : {cv_res['mean_test_accuracy'][i]:.4f}")
+		print(f"  • Precisão (média CV) : {cv_res['mean_test_precision'][i]:.4f}")
+		print(f"  • Recall   (média CV) : {cv_res['mean_test_recall'][i]:.4f}")
+		print(f"  • F1-Score (média CV) : {cv_res['mean_test_f1'][i]:.4f}")
+		print("  • Matriz de Confusão (média por fold):")
+		print(f"      VP (Verdadeiros Positivos) : {cv_res['mean_test_tp'][i]:.1f}")
+		print(f"      VN (Verdadeiros Negativos) : {cv_res['mean_test_tn'][i]:.1f}")
+		print(f"      FP (Falsos Positivos)     : {cv_res['mean_test_fp'][i]:.1f}")
+		print(f"      FN (Falsos Negativos)     : {cv_res['mean_test_fn'][i]:.1f}")
+
+	print("\n" + "-"*80)
+	print(f">>> VENCEDOR DO {nome_experimento} <<<")
+	print("Melhores Parâmetros :", grid.best_params_)
+	print(f"Melhor Acurácia     : {grid.best_score_:.4f}")
+	print("-"*80 + "\n")
