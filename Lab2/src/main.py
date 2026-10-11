@@ -83,7 +83,7 @@ def main():
 	erros = {}
 	i = 0
 	for nome, m in models.items():
-		print()
+		#print()
 		for n in range(1000, len(X_train) + 1, 1000):
 			if n < len(X_train):
 				X_sub, _, y_sub, _ = train_test_split(
@@ -104,15 +104,21 @@ def main():
 			i += 1
 			
 			acc = accuracy_score(y_test, y_pred)
-			if n == len(X_train):	
-				cms[nome] = confusion_matrix(y_test, y_pred, labels=range(10))
 			
-			p = precision_score(y_test, y_pred, average='macro')
-			r = recall_score(y_test, y_pred, average='macro')	
-			print(f"{nome} em {n} exemplos: {acc:.4f} | precision = {p} | recall = {r}")
+			svm_model = modelos["SVM"].named_steps["svc"]
+
+			print(svm_model.n_support_)
+			print("Total:", svm_model.n_support_.sum())
+			
+			#if n == len(X_train):	
+				#cms[nome] = confusion_matrix(y_test, y_pred, labels=range(10))
+			
+			#p = precision_score(y_test, y_pred, average='macro')
+			#r = recall_score(y_test, y_pred, average='macro')	
+			#print(f"{nome} em {n} exemplos: {acc:.4f} | precision = {p} | recall = {r}")
 	
-	np.save("cms.npy", cms)            # guarda, para não precisar retreinar
-	plotar_matrizes(cms, "matrizes_confusao.pdf")
+	#np.save("cms.npy", cms)            # guarda, para não precisar retreinar
+	#plotar_matrizes(cms, "matrizes_confusao.pdf")
 	
 	'''
 	print()
