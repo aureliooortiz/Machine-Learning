@@ -137,7 +137,7 @@ def main():
 	#	---------------------------
 	# Validação
 	# ---------------------------
-	skf = StratifiedKFold(n_splits=3, random_state=42, shuffle=True)
+	skf = StratifiedKFold(n_splits=5, random_state=42, shuffle=True)
 	melhores = {}
 	
 	for name, pipe in pipelines.items():
