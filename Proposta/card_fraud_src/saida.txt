@@ -1,8 +1,0 @@
-nohup: ignoring input
-Fitting 3 folds for each of 60 candidates, totalling 180 fits
-dt na Validação:
-Melhores parâmetros: {'dt__class_weight': None, 'dt__max_depth': 5, 'dt__max_features': None, 'dt__min_samples_split': 50}
-Melhor PR-AUC médio: 0.7845874259320741
-PR-AUC:  0.811286933198915
-ROC-AUC: 0.9497564557470057
-Fitting 3 folds for each of 72 candidates, totalling 216 fits

@@ -93,7 +93,7 @@ def main():
 	# ---------------------------------------
 	# Hiperparâmetros para validação (Grid)
 	# ---------------------------------------	
-	grids = {	
+	grids_val = {	
 		"dt": {
 			"dt__max_depth": [3,5,10,20,None], 
 			"dt__min_samples_split": [2,10,50],
@@ -137,6 +137,7 @@ def main():
 	#	---------------------------
 	# Validação
 	# ---------------------------
+	'''
 	skf = StratifiedKFold(n_splits=5, random_state=42, shuffle=True)
 	melhores = {}
 	
@@ -149,15 +150,29 @@ def main():
 		print(f"Melhor PR-AUC médio: {grid.best_score_}")
 
 		# Avaliação no conjunto de validação com melhores parametros
-		y_val_score = grid.best_estimator_.predict_proba(X_val)[:, 1]
-		print(f"PR-AUC:  {average_precision_score(y_val, y_val_score)}")
-		print(f"ROC-AUC: {roc_auc_score(y_val, y_val_score)}")
-		
+		if name != "smv":
+			y_val_score = grid.best_estimator_.predict_proba(X_val)[:, 1]
+			print(f"PR-AUC:  {average_precision_score(y_val, y_val_score)}")
+			print(f"ROC-AUC: {roc_auc_score(y_val, y_val_score)}")
+			
 		melhores[name] = grid.best_estimator_
-		
+	'''	
 	# --------------------------------
 	# Teste
 	# --------------------------------
-		
+	dt = DecisionTreeClassifier(class_weight=None, max_depth=5, max_features='sqrt', min_samples_split=50, random_state=42)
+	
+	rf = RandomForestClassifier(bootstrap=False, class_weight='balanced', max_depth=None, min_samples_split=2, n_estimators=500, random_state=42)	
+	
+	svm = SVC(C=10, class_weight=None, gamma=0.01, kernel='rbf')
+	
+	xg = XGBClassifier(colsample_bytree=0.08, learninf_rate=0.05, max_depth=6, n_estimators=300, scale_pos_weight=80, subsample=1.0, random_state=42)
+	
+	dt.fit(X_train, y_train)
+	rf.fit(X_train, y_train)
+	svm.fit(X_train, y_train)
+	xg.fit(X_train, y_train)	
+	
+	
 if __name__ == "__main__":
 	main()
