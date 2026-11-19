@@ -51,12 +51,12 @@ def main():
 	#	----------------------------------
 	models_train = {
 		"Decision Tree": DecisionTreeClassifier(),
-		"RandomForest": RandomForestClassifier(),
+		"RandomForest": RandomForestClassifier(n_jobs=-1, random_state=42),
 		"SVM": make_pipeline(
 			StandardScaler(),
 			SVC(
 			probability=True)),
-		"XGBoost": XGBClassifier()
+		"XGBoost": XGBClassifier(n_jobs=-1, random_state=42)
 	}
 	
 	# ------------------------
