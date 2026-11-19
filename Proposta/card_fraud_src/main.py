@@ -4,6 +4,7 @@ from sklearn.model_selection import train_test_split
 
 # Utilidade
 from sklearn.pipeline import make_pipeline
+from sklearn.pipeline import Pipeline
 
 # Modelos
 from sklearn.tree import DecisionTreeClassifier
@@ -27,6 +28,10 @@ from sklearn.metrics import (
 	classification_report,
 )
 
+# Validação
+from sklearn.model_selection import StratifiedKFold
+from sklearn.model_selection import GridSearchCV 
+
 def main():
 	# ----------------------------------------
 	# Lê CSV e separa X e y por colunas
@@ -47,15 +52,14 @@ def main():
 	X_train, X_val, y_train, y_val = train_test_split(X_train, y_train, test_size=0.25, random_state=42, stratify=y_train)
 	
 	# ----------------------------------
-	# Modelos
+	# Modelos Treino
 	#	----------------------------------
 	models_train = {
 		"Decision Tree": DecisionTreeClassifier(),
 		"RandomForest": RandomForestClassifier(n_jobs=-1, random_state=42),
 		"SVM": make_pipeline(
 			StandardScaler(),
-			SVC(
-			probability=True)),
+			SVC()),
 		"XGBoost": XGBClassifier(n_jobs=-1, random_state=42)
 	}
 	
@@ -64,32 +68,96 @@ def main():
 	# ------------------------
 	for nome, m in models_train.items():
 		m.fit(X_train, y_train)
-		y_pred = m.predict(X_train)
-		y_score = m.predict_proba(X_train)[:, 1]
-		roc_auc = roc_auc_score(y_train, y_score)
-		pr_auc = average_precision_score(y_train, y_score)
-		report = classification_report(y_train, y_pred, target_names=['NORMAL', 'FRAUD'])
-		print(f"{nome}:")
-		print(report)
-		print(f"roc_auc:{roc_auc}")
-		print(f"pr_auc:{pr_auc}")
+
+	# -------------------------------------
+	# Pipelines
+	# -------------------------------------
+	pipelines = {	
+		"dt": Pipeline([
+			('dt', DecisionTreeClassifier(random_state=42)),
+		]),
+		
+		"rf": Pipeline([
+			('rf', RandomForestClassifier(random_state=42))
+		]),
+		
+		"svm": Pipeline([
+			('scaler', StandardScaler()),
+			('svm', SVC())
+		]),
+		
+		"xg": Pipeline([
+			('xg', XGBClassifier(n_jobs=1, random_state=42))
+		])
+	}	
+	# ---------------------------------------
+	# Hiperparâmetros para validação (Grid)
+	# ---------------------------------------	
+	grids = {	
+		"dt": {
+			"dt__max_depth": [3,5,10,20,None], 
+			"dt__min_samples_split": [2,10,50],
+			"dt__max_features":[None, "sqrt"],
+			"dt__class_weight": [None, "balanced"],
+		},
+		
+		"rf": {
+			"rf__n_estimators":[200,500],
+			"rf__max_depth":[10, 20, None], 
+			"rf__min_samples_split":[2, 5, 10],
+			"rf__bootstrap":[True, False],
+			"rf__class_weight": [None, "balanced"],
+		},
+		
+		"svm": [	
+			{
+			"svm__kernel":["rbf"],
+			"svm__C":[0.1, 1, 10, 100],
+			"svm__gamma":["scale", 0.1, 0.01, 0.001],
+			"svm__class_weight": [None, "balanced"]
+			},
+			{
+			"svm__kernel":["linear"],
+			"svm__C":[0.1, 1],
+			"svm__class_weight": [None, "balanced"]
+			},
+			
+		],
+			
+		"xg": {	
+			"xg__learning_rate": [0.05, 0.1, 0.3],
+			"xg__max_depth": [3,6,9],
+			"xg__subsample": [0.8, 1.0],
+			"xg__colsample_bytree": [0.8, 1.0],
+			"xg__n_estimators": [100, 300],
+			"xg__scale_pos_weight": [1, 80],
+		}
+	}
+		
 	#	---------------------------
 	# Validação
 	# ---------------------------
+	skf = StratifiedKFold(n_splits=3, random_state=42, shuffle=True)
+	melhores = {}
+	
+	for name, pipe in pipelines.items():
+		grid = GridSearchCV(pipe, grids[name], cv=skf, scoring="average_precision", refit=True, n_jobs=-1, verbose=1)
+		grid.fit(X_train, y_train) 
+		
+		print(f"{name} na Validação:")
+		print("Melhores parâmetros:", grid.best_params_)
+		print(f"Melhor PR-AUC médio: {grid.best_score_}")
+
+		# Avaliação no conjunto de validação com melhores parametros
+		y_val_score = grid.best_estimator_.predict_proba(X_val)[:, 1]
+		print(f"PR-AUC:  {average_precision_score(y_val, y_val_score)}")
+		print(f"ROC-AUC: {roc_auc_score(y_val, y_val_score)}")
+		
+		melhores[name] = grid.best_estimator_
 		
 	# --------------------------------
 	# Teste
 	# --------------------------------
-	# Métricas
-		'''
-		cm = confusion_matrix(y_test, y_pred)
-		tn, fp, fn, tp = cm.ravel()
-		precision = (tn / (tn + fp))
-		recalll = (tp / (tp + fn))
-		accuracy = accuracy_score(y_test, y_pred)
-		f1 = f1_score(y_test, y_pred)
-		report = classification_report(y_test, y_pred)
-		'''
 		
 if __name__ == "__main__":
 	main()
