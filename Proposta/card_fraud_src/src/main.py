@@ -142,7 +142,7 @@ def main():
 	melhores = {}
 	
 	for name, pipe in pipelines.items():
-		grid = GridSearchCV(pipe, grids[name], cv=skf, scoring="average_precision", refit=True, n_jobs=-1, verbose=1)
+		grid = GridSearchCV(pipe, grids_val[name], cv=skf, scoring="average_precision", refit=True, n_jobs=-1, verbose=1)
 		grid.fit(X_train, y_train) 
 		
 		print(f"{name} na Validação:")
@@ -150,12 +150,12 @@ def main():
 		print(f"Melhor PR-AUC médio: {grid.best_score_}")
 
 		# Avaliação no conjunto de validação com melhores parametros
-		if name != "smv":
+		if name != "svm":
 			y_val_score = grid.best_estimator_.predict_proba(X_val)[:, 1]
 			print(f"PR-AUC:  {average_precision_score(y_val, y_val_score)}")
 			print(f"ROC-AUC: {roc_auc_score(y_val, y_val_score)}")
 		else:
-			y_val_score = m.decision_function(X_train)	
+			y_val_score = grid.best_estimator_.decision_function(X_train)	
 			print(f"PR-AUC:  {average_precision_score(y_val, y_val_score)}")
 			print(f"ROC-AUC: {roc_auc_score(y_val, y_val_score)}")	
 			
@@ -165,29 +165,28 @@ def main():
 	# Teste
 	# --------------------------------
 	models_test = {	
-		"dt": {
-		 	DecisionTreeClassifier(class_weight=None, max_depth=5, max_features='sqrt', min_samples_split=50, random_state=42)
-		},
+		"dt": DecisionTreeClassifier(class_weight=None, max_depth=5, max_features='sqrt', min_samples_split=50, random_state=42),
 		
-		"rf": { 
-			RandomForestClassifier(bootstrap=False, class_weight='balanced', max_depth=None, min_samples_split=2, n_estimators=500, random_state=42)	
-		},
+		"rf": RandomForestClassifier(bootstrap=False, class_weight='balanced', max_depth=None, min_samples_split=2, n_estimators=500, random_state=42),
 		
-		"svm": {
-			SVC(C=10, class_weight=None, gamma=0.01, kernel='rbf')
-		},
+		"svm": make_pipeline(
+		StandardScaler(),
+		SVC(C=10, class_weight=None, gamma=0.01, kernel='rbf')
+		),
 		
-		"xg": {
-			XGBClassifier(colsample_bytree=0.08, learninf_rate=0.05, max_depth=6, n_estimators=300, scale_pos_weight=80, subsample=1.0, random_state=42)
-		}	
+		"xg": XGBClassifier(colsample_bytree=0.8, learning_rate=0.05, max_depth=6, n_estimators=300, scale_pos_weight=80, subsample=1.0, random_state=42)
 	}
 	
 	for name, m in models_test.items():
 		m.fit(X_train, y_train)
 		y_pred = m.predict(X_test)
 		
-		classification_report(y_test, y_pred, target_names=['NORMAL', 'FRAUD'])
-		if name != "smv":
+		print(f"{name}")
+		
+		report = classification_report(y_test, y_pred, target_names=['NORMAL', 'FRAUD'])
+		print(report)
+		
+		if name != "svm":
 			y_test_score = m.predict_proba(X_test)[:, 1]
 			print(f"PR-AUC:  {average_precision_score(y_test, y_test_score)}")
 			print(f"ROC-AUC: {roc_auc_score(y_test, y_test_score)}")
