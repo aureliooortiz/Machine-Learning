@@ -206,7 +206,7 @@ def main():
 		report = classification_report(y_test, y_pred, target_names=['NORMAL', 'FRAUD'])
 		print(report)
 		
-		mat = matthews_corrcoef(y_true, y_pred)
+		mat = matthews_corrcoef(y_test, y_pred)
 		print(f"matthews: {mat}")
 		if name != "svm":
 			y_test_score = m.predict_proba(X_test)[:, 1]
