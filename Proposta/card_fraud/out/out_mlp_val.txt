@@ -1,0 +1,7 @@
+Fitting 5 folds for each of 8 candidates, totalling 40 fits
+mlp na Validação:
+Melhores parâmetros: {'mlp__activation': 'tanh', 'mlp__hidden_layer_sizes': (100,)}
+Melhor PR-AUC médio: 0.8953058285047681
+PR-AUC:  0.9314716089470217
+ROC-AUC: 0.9782474847442786
+
