@@ -1,16 +1,25 @@
 Fitting 5 folds for each of 60 candidates, totalling 300 fits
 dt na Validação:
+
 Melhores parâmetros: {'dt__class_weight': None, 'dt__max_depth': 5, 'dt__max_features': 'sqrt', 'dt__min_samples_split': 50}
 Melhor PR-AUC médio: 0.7966642413296892
+
 Fitting 5 folds for each of 72 candidates, totalling 360 fits
 rf na Validação:
+
 Melhores parâmetros: {'rf__bootstrap': False, 'rf__class_weight': 'balanced', 'rf__max_depth': None, 'rf__min_samples_split': 2, 'rf__n_estimators': 500}
 Melhor PR-AUC médio: 0.8917557758731913
+
 Fitting 5 folds for each of 36 candidates, totalling 180 fits
 svm na Validação:
+
 Melhores parâmetros: {'svm__C': 10, 'svm__class_weight': None, 'svm__gamma': 0.01, 'svm__kernel': 'rbf'}
+
 Melhor PR-AUC médio: 0.8751342091890024
+
 Fitting 5 folds for each of 144 candidates, totalling 720 fits
 xg na Validação:
+
 Melhores parâmetros: {'xg__colsample_bytree': 0.8, 'xg__learning_rate': 0.05, 'xg__max_depth': 6, 'xg__n_estimators': 300, 'xg__scale_pos_weight': 80, 'xg__subsample': 1.0}
+
 Melhor PR-AUC médio: 0.8970899187654116

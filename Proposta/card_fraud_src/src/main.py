@@ -36,7 +36,7 @@ def main():
 	# ----------------------------------------
 	# Lê CSV e separa X e y por colunas
 	# ----------------------------------------
-	df = pd.read_csv("csv/creditcard_40000.csv")
+	df = pd.read_csv("../csv/creditcard_40000.csv")
 	
 	X = df.drop(columns=["Class"])
 	y = df["Class"] # 0 legitima, 1 fraude
@@ -154,25 +154,47 @@ def main():
 			y_val_score = grid.best_estimator_.predict_proba(X_val)[:, 1]
 			print(f"PR-AUC:  {average_precision_score(y_val, y_val_score)}")
 			print(f"ROC-AUC: {roc_auc_score(y_val, y_val_score)}")
+		else:
+			y_val_score = m.decision_function(X_train)	
+			print(f"PR-AUC:  {average_precision_score(y_val, y_val_score)}")
+			print(f"ROC-AUC: {roc_auc_score(y_val, y_val_score)}")	
 			
 		melhores[name] = grid.best_estimator_
 	'''	
 	# --------------------------------
 	# Teste
 	# --------------------------------
-	dt = DecisionTreeClassifier(class_weight=None, max_depth=5, max_features='sqrt', min_samples_split=50, random_state=42)
+	models_test = {	
+		"dt": {
+		 	DecisionTreeClassifier(class_weight=None, max_depth=5, max_features='sqrt', min_samples_split=50, random_state=42)
+		},
+		
+		"rf": { 
+			RandomForestClassifier(bootstrap=False, class_weight='balanced', max_depth=None, min_samples_split=2, n_estimators=500, random_state=42)	
+		},
+		
+		"svm": {
+			SVC(C=10, class_weight=None, gamma=0.01, kernel='rbf')
+		},
+		
+		"xg": {
+			XGBClassifier(colsample_bytree=0.08, learninf_rate=0.05, max_depth=6, n_estimators=300, scale_pos_weight=80, subsample=1.0, random_state=42)
+		}	
+	}
 	
-	rf = RandomForestClassifier(bootstrap=False, class_weight='balanced', max_depth=None, min_samples_split=2, n_estimators=500, random_state=42)	
-	
-	svm = SVC(C=10, class_weight=None, gamma=0.01, kernel='rbf')
-	
-	xg = XGBClassifier(colsample_bytree=0.08, learninf_rate=0.05, max_depth=6, n_estimators=300, scale_pos_weight=80, subsample=1.0, random_state=42)
-	
-	dt.fit(X_train, y_train)
-	rf.fit(X_train, y_train)
-	svm.fit(X_train, y_train)
-	xg.fit(X_train, y_train)	
-	
-	
+	for name, m in models_test.items():
+		m.fit(X_train, y_train)
+		y_pred = m.predict(X_test)
+		
+		classification_report(y_test, y_pred, target_names=['NORMAL', 'FRAUD'])
+		if name != "smv":
+			y_test_score = m.predict_proba(X_test)[:, 1]
+			print(f"PR-AUC:  {average_precision_score(y_test, y_test_score)}")
+			print(f"ROC-AUC: {roc_auc_score(y_test, y_test_score)}")
+		else:
+			y_test_score = m.decision_function(X_test)	
+			print(f"PR-AUC:  {average_precision_score(y_test, y_test_score)}")
+			print(f"ROC-AUC: {roc_auc_score(y_test, y_test_score)}")
+			
 if __name__ == "__main__":
 	main()
