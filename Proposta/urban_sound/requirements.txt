@@ -1,0 +1,10 @@
+librosa
+soundfile
+pandas
+numpy
+torch
+torchaudio
+torchcodec
+scikit-learn
+tensorflow
+keras-tuner
