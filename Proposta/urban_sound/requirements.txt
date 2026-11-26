@@ -8,3 +8,5 @@ torchcodec
 scikit-learn
 tensorflow
 keras-tuner
+tensorboard
+matplotlib
