@@ -230,8 +230,8 @@ results = {"lstm": [], "ann": [], "cnn": []}
 input_shape = np.load(next((mel_dir / "fold1").glob("*.npy"))).shape   # (173, 128)
 builders_test = models_test_create(input_shape)
 for name in ["lstm", "ann", "cnn"]:
-	for test_fold in range(1,3):
-		train_folds = [n for n in range(1,3) if n != test_fold]
+	for test_fold in range(1,11):
+		train_folds = [n for n in range(1,11) if n != test_fold]
 		X_train, y_train = load_folds(train_folds)
 		X_test, y_test = load_folds([test_fold])
 		
@@ -245,7 +245,7 @@ for name in ["lstm", "ann", "cnn"]:
 		# history guarda curvas de acuracia e perda	
 		history = m.fit(
 			X_train, y_train,
-			epochs=1, batch_size=32,
+			epochs=20, batch_size=32,
 			validation_data=(X_test, y_test),
 			verbose=2
 		)
@@ -311,7 +311,7 @@ for name, res in results.items():
 		plt.close()
 
 # Comparação entre modelos: acurácia dos 10 folds em um boxplot
-plt.boxplot([[r["acc"] for r in results[n]] for n in results], labels=list(results))
+plt.boxplot([[r["acc"] for r in results[n]] for n in results], tick_labels=list(results))
 plt.ylabel("Acurácia")
 plt.savefig("../out/boxplot_modelos.png", dpi=150)
 plt.close()
