@@ -341,15 +341,15 @@ def main():
 		
 		"svm": [	
 			{
-			"svm__kernel":["rbf"],
-			"svm__C":[0.1, 1, 10, 100],
-			"svm__gamma":["scale", 0.1, 0.01, 0.001],
-			"svm__class_weight": [None, "balanced"]
+				"svm__kernel":["rbf"],
+				"svm__C":[0.1, 1, 10, 100],
+				"svm__gamma":["scale", 0.1, 0.01, 0.001],
+				"svm__class_weight": [None, "balanced"]
 			},
 			{
-			"svm__kernel":["linear"],
-			"svm__C":[0.1, 1],
-			"svm__class_weight": [None, "balanced"]
+				"svm__kernel":["linear"],
+				"svm__C":[0.1, 1],
+				"svm__class_weight": [None, "balanced"]
 			},	
 		],
 			
